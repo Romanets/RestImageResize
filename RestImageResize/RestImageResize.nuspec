@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <iconUrl>https://raw.github.com/VladimirLevchuk/EPiProperties/master/EPiProperties/images/creuna.gif</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Inital release.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>Creuna Image Resize Transform OpenWave ASP.NET EPiServer</tags>
+  </metadata>
+  <files>
+        <file src="*.transform" target="content"/>
+    </files>
+</package>

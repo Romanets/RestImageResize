@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebPackageTest", "RestImageResize.WebPackageTest\RestImageResize.WebPackageTest.csproj", "{F345787E-4760-4B88-83DF-369137C3F07E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize", "RestImageResize\RestImageResize.csproj", "{61C67F04-6B5E-4585-BC89-67C43AB47B2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{475C0A9A-073B-4788-A2A3-386E67F22458}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F345787E-4760-4B88-83DF-369137C3F07E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F345787E-4760-4B88-83DF-369137C3F07E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F345787E-4760-4B88-83DF-369137C3F07E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F345787E-4760-4B88-83DF-369137C3F07E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C67F04-6B5E-4585-BC89-67C43AB47B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C67F04-6B5E-4585-BC89-67C43AB47B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C67F04-6B5E-4585-BC89-67C43AB47B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C67F04-6B5E-4585-BC89-67C43AB47B2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

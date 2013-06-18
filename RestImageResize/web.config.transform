@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <system.webServer>
+    <modules>
+      <add name="RestImageResizeModule" type="RestImageResize.RestImageResizeModule, RestImageResize" />
+    </modules>
+  </system.webServer>
+</configuration>
