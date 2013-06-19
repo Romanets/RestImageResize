@@ -5,13 +5,13 @@ namespace RestImageResize
 {
     /// <summary>
     /// Provides image-resizing functionality that can be requested with query string of image URL that is built on top of OpenWaves.ImageTransform.Web framework.
+    /// </summary>
     /// <example>
-    /// <img src="~/Images/test_image.jpg?width=1000&height=200&transform=fill" />
+    /// &lt;img src=&quot;~/Images/test_image.jpg?width=1000&amp;height=200&amp;transform=fill&quot; /&gt;
     /// </example>
     /// <remarks>
     /// Supported transforms: Fit(default), Fill, DownFit, DownFill, Crop, Stretch.
     /// </remarks>
-    /// </summary>
     public class RestImageResizeModule : IHttpModule
     {
         /// <summary>

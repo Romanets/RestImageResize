@@ -58,9 +58,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\OpenWaves.Web.1.0.85.245\lib\net40\OpenWaves.Web.dll</HintPath>
     </Reference>
-    <Reference Include="RestImageResize, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RestImageResize, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestImageResize.1.0.0.0\lib\net40\RestImageResize.dll</HintPath>
+      <HintPath>..\packages\RestImageResize.1.0.1.0\lib\net40\RestImageResize.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -141,6 +141,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\Images\bigcat.JPG" />
+    <Content Include="Content\Images\test1.jpg" />
     <Content Include="CustomDictionary.xml" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ow.responsiveImage.js" />
