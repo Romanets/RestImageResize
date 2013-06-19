@@ -5,7 +5,9 @@ RestImageResize
 ***
 For quick start install [Nuget][1] Package [RestImageResize][2] with nuget [Package Manager Console][1] and add image url with query like in following example:
 ``
+
 <img src="~/Content/Images/bigcat.JPG?width=1200&height=260&transform=fill" />
+
 ``
 ***
 
