@@ -43,10 +43,11 @@ namespace RestImageResize
         /// <returns></returns>
         public static ImageTransformQuery FromQueryString(NameValueCollection queryString)
         {
+
             var instance = new ImageTransformQuery
                 {
-                    Width = SmartConvert.ChangeType(queryString["width"], 0),
-                    Height = SmartConvert.ChangeType(queryString["height"], 0),
+                    Width = (int)SmartConvert.ChangeType<uint>(queryString["width"], 0),
+                    Height = (int)SmartConvert.ChangeType<uint>(queryString["height"], 0),
                     Transform = SmartConvert.ChangeType(queryString["transform"], ImageTransform.Fit)
                 };
 
