@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Web;
 
-namespace RestImageResize
+namespace RestImageResize.Utils
 {
     /// <summary>
     /// Contains utility methods that help to work with <see cref="Uri"/> instances.

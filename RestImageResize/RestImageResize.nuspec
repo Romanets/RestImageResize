@@ -10,7 +10,7 @@
     <iconUrl>https://raw.github.com/VladimirLevchuk/EPiProperties/master/EPiProperties/images/creuna.gif</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Fixed small bugs.</releaseNotes>
+    <releaseNotes>Updated behaviour when one of the 'width' of 'height' parameter is not set.</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>Creuna Image Resize Transform OpenWaves ASP.NET EPiServer</tags>
   </metadata>

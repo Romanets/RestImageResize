@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using RestImageResize.Contracts;
 
 namespace RestImageResize
 {

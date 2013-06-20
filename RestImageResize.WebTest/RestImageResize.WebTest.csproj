@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F345787E-4760-4B88-83DF-369137C3F07E}</ProjectGuid>
+    <ProjectGuid>{4C1F4E31-4158-484E-B104-A4D9F6E3B231}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestImageResize.WebPackageTest</RootNamespace>
-    <AssemblyName>RestImageResize.WebPackageTest</AssemblyName>
+    <RootNamespace>RestImageResize.WebTest</RootNamespace>
+    <AssemblyName>RestImageResize.WebTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -42,25 +42,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="OpenWaves, Version=1.0.85.259, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OpenWaves">
       <HintPath>..\packages\OpenWaves.1.0.85.259\lib\net40\OpenWaves.dll</HintPath>
     </Reference>
-    <Reference Include="OpenWaves.ImageTransformations, Version=1.0.85.251, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OpenWaves.ImageTransformations">
       <HintPath>..\packages\OpenWaves.ImageTransformations.1.0.85.251\lib\net40\OpenWaves.ImageTransformations.dll</HintPath>
     </Reference>
-    <Reference Include="OpenWaves.ImageTransformations.Web, Version=1.0.85.251, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OpenWaves.ImageTransformations.Web">
       <HintPath>..\packages\OpenWaves.ImageTransformations.Web.1.0.85.251\lib\net40\OpenWaves.ImageTransformations.Web.dll</HintPath>
     </Reference>
-    <Reference Include="OpenWaves.Web, Version=1.0.85.245, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OpenWaves.Web">
       <HintPath>..\packages\OpenWaves.Web.1.0.85.245\lib\net40\OpenWaves.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="RestImageResize, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestImageResize.1.0.2.0\lib\net40\RestImageResize.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -141,13 +133,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\Images\bigcat.JPG" />
+    <Content Include="Content\Images\small1.jpg" />
     <Content Include="Content\Images\test1.jpg" />
     <Content Include="CustomDictionary.xml" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ow.responsiveImage.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -172,6 +163,12 @@
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RestImageResize\RestImageResize.csproj">
+      <Project>{61C67F04-6B5E-4585-BC89-67C43AB47B2C}</Project>
+      <Name>RestImageResize</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -190,7 +187,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51532/</IISUrl>
+          <IISUrl>http://localhost:61718/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

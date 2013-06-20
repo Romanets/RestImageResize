@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h3>Original and Fill, Fit, Crop, Stretch with width 100</h3>
+<style>
+    img {
+        border: 1px solid red;
+    }
+</style>
+<img src="~/Content/Images/small1.jpg" />
+<img src="~/Content/Images/small1.jpg?width=100&transform=fill" />
+<img src="~/Content/Images/small1.jpg?width=100&transform=fit" />
+<img src="~/Content/Images/small1.jpg?width=100&transform=crop" />
+<img src="~/Content/Images/small1.jpg?width=100&transform=stretch" />
+
+<h3>Fill, Fit, Crop, Stretch with width 600</h3>
+<img src="~/Content/Images/small1.jpg?width=600&transform=fill" />
+<img src="~/Content/Images/small1.jpg?width=600&transform=fit" />
+<img src="~/Content/Images/small1.jpg?width=600&transform=crop" />
+<img src="~/Content/Images/small1.jpg?width=600&transform=stretch" />
+
+@*<h3>Fit with with 600</h3>
+<img src="~/Content/Images/bigcat.JPG?width=600&transform=fit" />
+<hr/>*@
+@*<img src="~/Content/Images/bigcat.jpg?width=600&transform=fill" />*@
+@*<hr/>
+<img src="~/Content/Images/bigcat.JPG?width=100&transform=fit" />
+<hr/>
+<h3>Fill with with 200</h3>
+<img src="~/Content/Images/bigcat.jpg?width=200&transform=fill" />
+<hr/>
+<img src="~/Content/Images/bigcat.jpg?width=100&transform=crop" />
+<hr/>
+<img src="~/Content/Images/bigcat.jpg?width=100&transform=stretch" />
+<hr/>*@

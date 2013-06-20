@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using OpenWaves.ImageTransformations;
+using RestImageResize.Utils;
 
 namespace RestImageResize
 {
@@ -37,57 +38,24 @@ namespace RestImageResize
         }
 
         /// <summary>
-        /// Created instance of <see cref="ImageTransformQuery"/> from URL query string values collection.
+        /// Creates and fills instance of <see cref="ImageTransformQuery"/> from URL query string values collection.
         /// </summary>
         /// <param name="queryString">The URL query string values collection.</param>
-        /// <returns></returns>
-        public static ImageTransformQuery FromQueryString(NameValueCollection queryString)
+        /// <param name="defaultTransform">The default transform.</param>
+        /// <returns>
+        /// The query instance.
+        /// </returns>
+        public static ImageTransformQuery FromQueryString(NameValueCollection queryString, ImageTransform defaultTransform)
         {
 
             var instance = new ImageTransformQuery
                 {
-                    Width = (int)SmartConvert.ChangeType<uint>(queryString["width"], 0),
-                    Height = (int)SmartConvert.ChangeType<uint>(queryString["height"], 0),
-                    Transform = SmartConvert.ChangeType(queryString["transform"], ImageTransform.Fit)
+                    Width = (int)SmartConvert.ChangeType<uint>(queryString["width"]),
+                    Height = (int)SmartConvert.ChangeType<uint>(queryString["height"]),
+                    Transform = SmartConvert.ChangeType(queryString["transform"], defaultTransform)
                 };
 
             return instance;
-        }
-
-        /// <summary>
-        /// Gets the transformation <see cref="OpenWaves.ImageTransformations.ImageTransformation"/> based on this instance.
-        /// </summary>
-        /// <returns>
-        /// The requested transformation instance.
-        /// </returns>
-        /// <exception cref="System.NotSupportedException">Not supported image transformation type.</exception>
-        public ImageTransformation GetTransformation()
-        {
-            if (!IsEmpty)
-            {
-                int width = Width > 0 ? Width : Height;
-                int height = Height > 0 ? Height : Width;
-
-                switch (Transform)
-                {
-                    case ImageTransform.Fit:
-                        return new ScaleToFitTransformation(width, height);
-                    case ImageTransform.Fill:
-                        return new ScaleToFillTransformation(width, height);
-                    case ImageTransform.DownFit:
-                        return new ScaleDownToFitTransformation(width, height);
-                    case ImageTransform.DownFill:
-                        return new ScaleDownToFillTransformation(width, height);
-                    case ImageTransform.Crop:
-                        return new CentralCropTransformation(width, height);
-                    case ImageTransform.Stretch:
-                        return new StretchTransformation(width, height);
-                    default:
-                        throw new NotSupportedException("Not supported image transformation type.");
-                }
-            }
-
-            return null;
         }
     }
 }

@@ -66,3 +66,4 @@ packages/
 *.testsettings
 *.nupkg
 RestImageResize.WebPackageTest/Images/Scaled/
+RestImageResize.WebTest/Images/Scaled/

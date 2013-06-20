@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using OpenWaves;
 using OpenWaves.ImageTransformations.Web;
+using RestImageResize.Contracts;
+using RestImageResize.Utils;
 
 namespace RestImageResize
 {
@@ -15,11 +17,43 @@ namespace RestImageResize
         private static readonly IEnumerable<string> ValidImageExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="OpenWaveRestApiEncoder"/> class.
+        /// </summary>
+        public OpenWaveRestApiEncoder() // needed to default implementation if interface resolve.
+            : this(null, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenWaveRestApiEncoder"/> class.
+        /// </summary>
+        /// <param name="imageTransformService">The image transform service.</param>
+        /// <param name="imageTransformationBuilderFactory">The image transformation builder factory.</param>
+        /// <param name="defaultImageTransform">The image transform type that should be used if not specified in query.</param>
+        public OpenWaveRestApiEncoder(
+            IWebImageTransformationService imageTransformService = null,
+            IImageTransformationBuilderFactory imageTransformationBuilderFactory = null,
+            ImageTransform? defaultImageTransform = null)
+        {
+            ImageTransformationService = imageTransformService ?? OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>();
+            ImageTransformationBuilderFactory = imageTransformationBuilderFactory ?? OpenWaves.ServiceLocator.Resolve<IImageTransformationBuilderFactory>();
+            DefaultImageTransform = defaultImageTransform ?? Config.DefaultTransform;
+        }
+
+        /// <summary>
         /// Gets the OpenWave image transformation service.
         /// </summary>
-        // ReSharper disable RedundantNameQualifier
-        protected IWebImageTransformationService ImageTransformationService { get { return OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>(); } }
-        // ReSharper restore RedundantNameQualifier
+        protected virtual IWebImageTransformationService ImageTransformationService { get; private set; }
+
+        /// <summary>
+        /// Gets the image transformation builder factory.
+        /// </summary>
+        protected virtual IImageTransformationBuilderFactory ImageTransformationBuilderFactory { get; private set; }
+
+        /// <summary>
+        /// Gets the default image transform.
+        /// </summary>
+        protected virtual ImageTransform DefaultImageTransform { get; private set; }
 
         /// <summary>
         /// Determines whether URL is supported to encode (contains image resizing request).
@@ -38,7 +72,7 @@ namespace RestImageResize
                 if (queryString["t"] == null || queryString["ts"] == null)
                 {
                     // if some transformation requested.
-                    if (!ImageTransformQuery.FromQueryString(queryString).IsEmpty)
+                    if (!ImageTransformQuery.FromQueryString(queryString, DefaultImageTransform).IsEmpty)
                     {
                         return true;
                     }
@@ -62,8 +96,14 @@ namespace RestImageResize
                 return uri;
             }
 
-            var transformQuery = ImageTransformQuery.FromQueryString(uri.GetQueryString());
-            Url url = ImageTransformationService.GetTransformedImageUrl(Url.Parse(uri.ToString()), transformQuery.GetTransformation());
+            var transformQuery = ImageTransformQuery.FromQueryString(uri.GetQueryString(), DefaultImageTransform);
+
+            var transformBuilder = ImageTransformationBuilderFactory.CreateBuilder();
+            transformBuilder.Width = transformQuery.Width;
+            transformBuilder.Height = transformQuery.Height;
+            transformBuilder.TransformType = transformQuery.Transform;
+
+            Url url = ImageTransformationService.GetTransformedImageUrl(Url.Parse(uri.ToString()), transformBuilder);
             return new Uri(url.ToString(), UriKind.RelativeOrAbsolute);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenWaves;
 
-namespace RestImageResize
+namespace RestImageResize.Contracts
 {
     /// <summary>
     /// Defines an interface of encoder of REST image resizing URI to OpenWave web image transformation URI.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace RestImageResize
+namespace RestImageResize.Utils
 {
     /// <summary>
     /// The conversion utile methods which do conversion in more smart safe way then standard <see cref="Convert"/> utility.
@@ -13,6 +13,7 @@ namespace RestImageResize
     {
         #region Constants
 
+        // case ignored
         private static readonly HashSet<String> TrueStringValues = new HashSet<string> { "TRUE", "1", "YES", "+" };
         private static readonly HashSet<String> FalseStringValues = new HashSet<string> { "FALSE", "0", "NO", "-" };
 
@@ -21,16 +22,112 @@ namespace RestImageResize
         #region Methods
 
         /// <summary>
-        /// Converts value to the equivalent value of specified type.
+        /// Attempts to convert value to the equivalent value of specified type.
         /// </summary>
         /// <typeparam name="TResult">The target conversion type.</typeparam>
         /// <param name="value">The value to convert.</param>
+        /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
         /// <returns>
         /// The conversion result value.
         /// </returns>
-        public static TResult ChangeType<TResult>(object value)
+        public static TResult TryChangeType<TResult>(object value, TResult defaultValue = default(TResult))
         {
-            return (TResult)ChangeType(value, typeof(TResult));
+            return TryChangeType<TResult>(value, defaultValue, defaultValue);
+        }
+
+        /// <summary>
+        /// Attempts to convert value to the equivalent value of specified type.
+        /// </summary>
+        /// <typeparam name="TResult">The target conversion type.</typeparam>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
+        /// <param name="fallbackValue">The value that should be used if source value can not be converted to target type (if not specified <paramref name="defaultValue"/> is used).</param>
+        /// <returns>
+        /// The conversion result value.
+        /// </returns>
+        // ReSharper disable MethodOverloadWithOptionalParameter
+        public static TResult TryChangeType<TResult>(object value, TResult defaultValue = default(TResult), TResult fallbackValue = default(TResult))
+        // ReSharper restore MethodOverloadWithOptionalParameter
+        {
+            try
+            {
+                return ChangeType<TResult>(value, defaultValue);
+            }
+            catch
+            {
+                return fallbackValue;
+            }
+        }
+
+        /// <summary>
+        /// Attempts to convert value to the equivalent value of specified type.
+        /// </summary>
+        /// <param name="targetType">The target conversion type.</param>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
+        /// <returns>
+        /// The conversion result value.
+        /// </returns>
+        public static object TryChangeType(Type targetType, object value, object defaultValue = null)
+        {
+            return TryChangeType(targetType, value, defaultValue, defaultValue);
+        }
+
+        /// <summary>
+        /// Attempts to convert value to the equivalent value of specified type.
+        /// </summary>
+        /// <param name="targetType">The target conversion type.</param>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
+        /// <param name="fallbackValue">The value that should be used if source value can not be converted to target type (if not specified <paramref name="defaultValue"/> is used).</param>
+        /// <returns>
+        /// The conversion result value.
+        /// </returns>
+        // ReSharper disable MethodOverloadWithOptionalParameter
+        public static object TryChangeType(Type targetType, object value, object defaultValue = null, object fallbackValue = null)
+        // ReSharper restore MethodOverloadWithOptionalParameter
+        {
+            if (targetType == null)
+            {
+                throw new ArgumentNullException("targetType");
+            }
+            if (defaultValue != null)
+            {
+                try
+                {
+                    defaultValue = ChangeType(targetType, defaultValue);
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException("Default value type mismatch.", "defaultValue", ex);
+                }
+            }
+
+            if (fallbackValue != null)
+            {
+                try
+                {
+                    fallbackValue = ChangeType(targetType, fallbackValue);
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException("Fallback value type mismatch.", "fallbackValue", ex);
+                }
+            }
+
+            try
+            {
+                return ChangeTypeImpl(targetType, value, defaultValue);
+            }
+            catch
+            {
+                if (fallbackValue != null)
+                {
+                    return fallbackValue;
+                }
+
+                return GetNullValue(targetType);
+            }
         }
 
         /// <summary>
@@ -42,22 +139,9 @@ namespace RestImageResize
         /// <returns>
         /// The conversion result value.
         /// </returns>
-        public static TResult ChangeType<TResult>(object value, TResult defaultValue)
+        public static TResult ChangeType<TResult>(object value, TResult defaultValue = default(TResult))
         {
-            return (TResult)ChangeType(value, defaultValue, typeof(TResult));
-        }
-
-        /// <summary>
-        /// Converts value to the equivalent value of specified type.
-        /// </summary>
-        /// <param name="targetType">The target conversion type.</param>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>
-        /// The conversion result value.
-        /// </returns>
-        public static object ChangeType(object value, Type targetType)
-        {
-            return ChangeType(value, null, targetType);
+            return (TResult)ChangeTypeImpl(typeof(TResult), value, defaultValue);
         }
 
         /// <summary>
@@ -69,11 +153,40 @@ namespace RestImageResize
         /// <returns>
         /// The conversion result value.
         /// </returns>
-        public static object ChangeType(object value, object defaultValue, Type targetType)
+        public static object ChangeType(Type targetType, object value, object defaultValue = null)
         {
-            // ReSharper disable RedundantNameQualifier
+            if (targetType == null)
+            {
+                throw new ArgumentNullException("targetType");
+            }
+
+            if (defaultValue != null)
+            {
+                try
+                {
+                    defaultValue = ChangeType(targetType, defaultValue);
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException("Default value type mismatch.", "defaultValue", ex);
+                }
+            }
+
+            return ChangeTypeImpl(targetType, value, defaultValue);
+        }
+
+        /// <summary>
+        /// Converts value to the equivalent value of specified type.
+        /// </summary>
+        /// <param name="targetType">The target conversion type.</param>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
+        /// <returns>
+        /// The conversion result value.
+        /// </returns>
+        private static object ChangeTypeImpl(Type targetType, object value, object defaultValue = null)
+        {
             if (object.Equals(value, string.Empty))
-            // ReSharper restore RedundantNameQualifier
             {
                 if (targetType == typeof(string))
                 {
@@ -83,7 +196,7 @@ namespace RestImageResize
                 value = null;
             }
 
-            if (value == null)
+            if (value == null || value == GetNullValue(value.GetType()))
             {
                 if (defaultValue != null)
                 {

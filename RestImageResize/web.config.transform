@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
+  <appSettings>
+    <add key="RestImageResize.DefautTransform" value="downFit"/>
+  </appSettings>
   <system.webServer>
     <modules>
       <add name="RestImageResizeModule" type="RestImageResize.RestImageResizeModule, RestImageResize" />
