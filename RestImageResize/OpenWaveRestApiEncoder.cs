@@ -64,8 +64,8 @@ namespace RestImageResize
         /// </returns>
         public bool IsSupportedUri(Uri uri)
         {
-            string fileExtyention = (Path.GetExtension(uri.GetFileName()) ?? string.Empty).ToLower();
-            if (ValidImageExtensions.Contains(fileExtyention))
+            string fileExtension = (Path.GetExtension(uri.GetFileName()) ?? string.Empty).ToLower();
+            if (ValidImageExtensions.Contains(fileExtension))
             {
                 var queryString = uri.GetQueryString();
 
