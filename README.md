@@ -11,7 +11,7 @@ For quick start install [Nuget][1] Package [RestImageResize][2] with nuget [Pack
 
 Query syntax:
 
-Parameters "width" and "height" - numbers from 0 to 2147483647, if any of them is missed value will be copied from other one.
+Parameters "width" and "height" - numbers from 0 to 2147483647, if any of them is missed value will be automatically ajusted according to transformation type, for 'fit' transformations missed dimension is ignored for other is treat as unchangeable.
 
 Parameter "transform" can be specified with one of the following values: "fit", "fill", "downFit", "downFill", "crop", "stretch" if parameter is missed - "fit" value will be used as default.
 
