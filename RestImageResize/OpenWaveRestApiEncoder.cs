@@ -68,14 +68,11 @@ namespace RestImageResize
             if (ValidImageExtensions.Contains(fileExtyention))
             {
                 var queryString = uri.GetQueryString();
-                // if query string does not contain OpanWave image transformation parameters(not previously encoded).
-                if (queryString["t"] == null || queryString["ts"] == null)
+
+                // if some transformation requested.
+                if (!ImageTransformQuery.FromQueryString(queryString, DefaultImageTransform).IsEmpty)
                 {
-                    // if some transformation requested.
-                    if (!ImageTransformQuery.FromQueryString(queryString, DefaultImageTransform).IsEmpty)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
 
