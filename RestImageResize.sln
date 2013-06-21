@@ -16,6 +16,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebTest", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiTest", "RestImageResize.WebEPiTest\RestImageResize.WebEPiTest.csproj", "{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RestImageResize.EPiServer", "RestImageResize.EPiServer", "{ABEABD99-0F1E-40CC-81D3-F838D5726B93}"
+	ProjectSection(SolutionItems) = preProject
+		RestImageResize.EpiServer\nuget-pack.cmd = RestImageResize.EpiServer\nuget-pack.cmd
+		RestImageResize.EpiServer\RestImageResize.EPiServer.nuspec = RestImageResize.EpiServer\RestImageResize.EPiServer.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{4B417184-AB21-46B1-917D-BADBA7FDCBE9}"
+	ProjectSection(SolutionItems) = preProject
+		RestImageResize.EpiServer\App_Start\OpenWavesImageTransformationsInitModule.cs.pp = RestImageResize.EpiServer\App_Start\OpenWavesImageTransformationsInitModule.cs.pp
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiPackageTest", "RestImageResize.WebEPiPackageTest\RestImageResize.WebEPiPackageTest.csproj", "{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,8 +51,15 @@ Global
 		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4B417184-AB21-46B1-917D-BADBA7FDCBE9} = {ABEABD99-0F1E-40CC-81D3-F838D5726B93}
 	EndGlobalSection
 EndGlobal

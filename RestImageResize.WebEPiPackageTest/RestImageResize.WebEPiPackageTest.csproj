@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}</ProjectGuid>
+    <ProjectGuid>{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestImageResize.WebEPiTest</RootNamespace>
-    <AssemblyName>RestImageResize.WebEPiTest</AssemblyName>
+    <RootNamespace>RestImageResize.WebEPiPackageTest</RootNamespace>
+    <AssemblyName>RestImageResize.WebEPiPackageTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -92,6 +92,9 @@
     <Reference Include="OpenWaves.Web">
       <HintPath>..\packages\OpenWaves.Web.1.0.85.245\lib\net40\OpenWaves.Web.dll</HintPath>
     </Reference>
+    <Reference Include="RestImageResize">
+      <HintPath>..\packages\RestImageResize.1.0.3.0\lib\net40\RestImageResize.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -157,9 +160,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Start\Index.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Start\Index.cshtml" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -168,21 +171,15 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RestImageResize\RestImageResize.csproj">
-      <Project>{61C67F04-6B5E-4585-BC89-67C43AB47B2C}</Project>
-      <Name>RestImageResize</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>37004</DevelopmentServerPort>
+          <DevelopmentServerPort>37006</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:37004/</IISUrl>
+          <IISUrl>http://localhost:37006/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

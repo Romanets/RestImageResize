@@ -1,13 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RestImageResize")]
-[assembly: AssemblyProduct("RestImageResize")]
-[assembly: AssemblyDescription("Provides HttpModule that adds support of simple rest API to OpenWaves.ImageTransformations.Web package.")]
-[assembly: AssemblyCompany("Roman Mironets, Creuna Kharkiv office")]
+[assembly: AssemblyTitle("RestImageResize.WebEPiPackageTest")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("RestImageResize.WebEPiPackageTest")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -18,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e95290d8-60e3-46bf-9b66-de20523fea83")]
+[assembly: Guid("88afdc94-7e3b-40a1-93f6-9e67d5999a36")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -27,9 +29,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
+// You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-
-[assembly: AssemblyVersion("1.0.3")]
-[assembly: AssemblyFileVersion("1.0.3")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

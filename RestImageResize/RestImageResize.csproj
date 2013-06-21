@@ -82,6 +82,7 @@
     <Compile Include="Utils\UriExtentions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="nuget-pack.bat" />
     <None Include="packages.config" />
     <None Include="web.config.transform" />
   </ItemGroup>
