@@ -3,7 +3,7 @@ RestImageResize
 
 ### Provides an ASP.NET HttpModule that adds support of simple rest API to OpenWaves.ImageTransformations.Web package.
 ***
-For quick start install [Nuget][1] Package [RestImageResize][2] with nuget [Package Manager Console][1] and add image url with query like in following example:
+For quick start install [Nuget][1] Package [RestImageResize][2] (or [RestImageResize.EPiServer][3] for [EpiServer CMS][5] based site) with nuget [Package Manager Console][4] and add image url with query like in following example:
 ```
 <img src="~/Content/Images/bigcat.JPG?width=1200&height=260&transform=fill" />
 ```
@@ -17,4 +17,6 @@ Parameter "transform" can be specified with one of the following values: "fit", 
 
 [1]: http://nuget.org/
 [2]: http://nuget.org/packages/RestImageResize/
-[3]: http://docs.nuget.org/docs/start-here/using-the-package-manager-console
+[3]: http://nuget.org/packages/RestImageResize.EpiServer/
+[4]: http://docs.nuget.org/docs/start-here/using-the-package-manager-console
+[5]: http://www.episerver.com/Products/EPiServer-7-CMS/
