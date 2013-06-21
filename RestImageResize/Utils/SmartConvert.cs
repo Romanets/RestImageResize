@@ -27,27 +27,11 @@ namespace RestImageResize.Utils
         /// <typeparam name="TResult">The target conversion type.</typeparam>
         /// <param name="value">The value to convert.</param>
         /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
-        /// <returns>
-        /// The conversion result value.
-        /// </returns>
-        public static TResult TryChangeType<TResult>(object value, TResult defaultValue = default(TResult))
-        {
-            return TryChangeType<TResult>(value, defaultValue, defaultValue);
-        }
-
-        /// <summary>
-        /// Attempts to convert value to the equivalent value of specified type.
-        /// </summary>
-        /// <typeparam name="TResult">The target conversion type.</typeparam>
-        /// <param name="value">The value to convert.</param>
-        /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
         /// <param name="fallbackValue">The value that should be used if source value can not be converted to target type (if not specified <paramref name="defaultValue"/> is used).</param>
         /// <returns>
         /// The conversion result value.
         /// </returns>
-        // ReSharper disable MethodOverloadWithOptionalParameter
         public static TResult TryChangeType<TResult>(object value, TResult defaultValue = default(TResult), TResult fallbackValue = default(TResult))
-        // ReSharper restore MethodOverloadWithOptionalParameter
         {
             try
             {
@@ -65,32 +49,18 @@ namespace RestImageResize.Utils
         /// <param name="targetType">The target conversion type.</param>
         /// <param name="value">The value to convert.</param>
         /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
-        /// <returns>
-        /// The conversion result value.
-        /// </returns>
-        public static object TryChangeType(Type targetType, object value, object defaultValue = null)
-        {
-            return TryChangeType(targetType, value, defaultValue, defaultValue);
-        }
-
-        /// <summary>
-        /// Attempts to convert value to the equivalent value of specified type.
-        /// </summary>
-        /// <param name="targetType">The target conversion type.</param>
-        /// <param name="value">The value to convert.</param>
-        /// <param name="defaultValue">The default value of target type that should be used as empty value equivalent.</param>
         /// <param name="fallbackValue">The value that should be used if source value can not be converted to target type (if not specified <paramref name="defaultValue"/> is used).</param>
         /// <returns>
         /// The conversion result value.
         /// </returns>
-        // ReSharper disable MethodOverloadWithOptionalParameter
+        
         public static object TryChangeType(Type targetType, object value, object defaultValue = null, object fallbackValue = null)
-        // ReSharper restore MethodOverloadWithOptionalParameter
         {
             if (targetType == null)
             {
                 throw new ArgumentNullException("targetType");
             }
+
             if (defaultValue != null)
             {
                 try

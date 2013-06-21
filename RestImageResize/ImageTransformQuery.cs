@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
-using OpenWaves.ImageTransformations;
+﻿using System.Collections.Specialized;
 using RestImageResize.Utils;
 
 namespace RestImageResize

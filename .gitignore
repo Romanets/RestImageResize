@@ -67,3 +67,5 @@ packages/
 *.nupkg
 RestImageResize.WebPackageTest/Images/Scaled/
 RestImageResize.WebTest/Images/Scaled/
+AppData/Index/
+RestImageResize.WebEPiTest/Content/Images/Transformed/

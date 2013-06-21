@@ -64,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Utils\ServiceLocatorUtils.cs" />
+    <Compile Include="Utils\WrapResolver.cs" />
+    <Compile Include="UniversalImageTransformationParcer.cs" />
     <Compile Include="Utils\ConfigUtils.cs" />
     <Compile Include="Contracts\IImageTransformationBuilder.cs" />
     <Compile Include="Contracts\IImageTransformationBuilderFactory.cs" />

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using OpenWaves.ImageTransformations;
 using RestImageResize.Contracts;
+using RestImageResize.Utils;
 
 namespace RestImageResize
 {
@@ -9,11 +11,65 @@ namespace RestImageResize
     /// </summary>
     public class ImageTransformationBuilder : IImageTransformationBuilder
     {
+        private const string PropertiesStringSeparator = ";";
         private const string ValueSholdBePositiveOrZero = "Value should be positive or 0.";
 
         private int _height;
-        private int _width;
         private ImageTransform _transformType;
+        private int _width;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageTransformationBuilder"/> class.
+        /// </summary>
+        public ImageTransformationBuilder()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageTransformationBuilder"/> class.
+        /// </summary>
+        /// <param name="serializedProperties">The serialized properties.</param>
+        /// <remarks>This constructor is used by <see cref="ImageTransformationParser"/> component.</remarks>
+        /// <exception cref="System.ArgumentNullException">serializedProperties</exception>
+        /// <exception cref="System.ArgumentException">Bad format.;serializedProperties</exception>
+        public ImageTransformationBuilder(string serializedProperties)
+        {
+            if (serializedProperties == null)
+            {
+                throw new ArgumentNullException("serializedProperties");
+            }
+
+            string[] propertyValues = serializedProperties.Split(new[] { PropertiesStringSeparator }, StringSplitOptions.RemoveEmptyEntries);
+            bool badFormat = propertyValues.Length != 3;
+
+            if (!badFormat)
+            {
+                try
+                {
+                    TransformType = SmartConvert.ChangeType<ImageTransform>(propertyValues[0]);
+                    Width = SmartConvert.ChangeType<int>(propertyValues[1]);
+                    Height = SmartConvert.ChangeType<int>(propertyValues[2]);
+                }
+                catch
+                {
+                    badFormat = true;
+                }
+            }
+
+            if (badFormat)
+            {
+                throw new ArgumentException("Bad format.", "serializedProperties");
+            }
+        }
+
+        /// <summary>
+        /// Gets the image transformation.
+        /// </summary>
+        /// <value>
+        /// The image transformation.
+        /// </value>
+        protected IImageTransformation ImageTransformation { get; private set; }
 
         /// <summary>
         /// Gets or sets the desired image width.
@@ -77,14 +133,6 @@ namespace RestImageResize
         }
 
         /// <summary>
-        /// Gets the image transformation.
-        /// </summary>
-        /// <value>
-        /// The image transformation.
-        /// </value>
-        protected IImageTransformation ImageTransformation { get; private set; }
-
-        /// <summary>
         /// Applies transformation to an image.
         /// </summary>
         /// <param name="image">The image.</param>
@@ -101,14 +149,25 @@ namespace RestImageResize
         /// <returns>
         /// The serialization string.
         /// </returns>
-        public string Serialize()
+        public virtual string Serialize()
         {
             if (ImageTransformation != null)
             {
                 return ImageTransformation.Serialize();
             }
 
-            return string.Empty;
+            return string.Format(CultureInfo.InvariantCulture, "{0}|{1}", GetType().AssemblyQualifiedName, SerializeProperties());
+        }
+
+        /// <summary>
+        /// Serializes the properties.
+        /// </summary>
+        /// <returns>
+        /// Serialized string.
+        /// </returns>
+        protected virtual string SerializeProperties()
+        {
+            return string.Join(PropertiesStringSeparator, TransformType, Width, Height);
         }
 
         /// <summary>
@@ -158,6 +217,17 @@ namespace RestImageResize
                 default:
                     throw new NotSupportedException("Not supported image transformation type.");
             }
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return Serialize();
         }
     }
 }

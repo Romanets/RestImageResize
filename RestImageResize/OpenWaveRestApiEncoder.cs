@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using OpenWaves;
+using OpenWaves.ImageTransformations;
 using OpenWaves.ImageTransformations.Web;
 using RestImageResize.Contracts;
 using RestImageResize.Utils;
@@ -20,24 +21,30 @@ namespace RestImageResize
         /// Initializes a new instance of the <see cref="OpenWaveRestApiEncoder"/> class.
         /// </summary>
         public OpenWaveRestApiEncoder() // needed to default implementation if interface resolve.
-            : this(null, null, null)
+            : this(null, null, null, null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OpenWaveRestApiEncoder"/> class.
+        /// Initializes a new instance of the <see cref="OpenWaveRestApiEncoder" /> class.
         /// </summary>
         /// <param name="imageTransformService">The image transform service.</param>
         /// <param name="imageTransformationBuilderFactory">The image transformation builder factory.</param>
         /// <param name="defaultImageTransform">The image transform type that should be used if not specified in query.</param>
+        /// <param name="imageTransformationParser">The image transformation parser.</param>
         public OpenWaveRestApiEncoder(
             IWebImageTransformationService imageTransformService = null,
             IImageTransformationBuilderFactory imageTransformationBuilderFactory = null,
-            ImageTransform? defaultImageTransform = null)
+            ImageTransform? defaultImageTransform = null,
+            IImageTransformationParser imageTransformationParser = null)
         {
             ImageTransformationService = imageTransformService ?? OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>();
             ImageTransformationBuilderFactory = imageTransformationBuilderFactory ?? OpenWaves.ServiceLocator.Resolve<IImageTransformationBuilderFactory>();
             DefaultImageTransform = defaultImageTransform ?? Config.DefaultTransform;
+
+            var wrapResolver = new WrapResolver(ServiceLocatorUtils.GetCurrentResolver());
+            wrapResolver.Register<IImageTransformationParser>(imageTransformationParser ?? new UniversalImageTransformationParser());
+            ServiceLocator.SetResolver(wrapResolver);
         }
 
         /// <summary>
