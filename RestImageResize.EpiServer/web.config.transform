@@ -5,12 +5,4 @@
       <add name="ImagesTransformVPP" virtualPath="~/TransformedImages/" physicalPath="[appDataPath]\TransformedImages" bypassAccessCheck="true" useRouting="true" type="EPiServer.Web.Hosting.VirtualPathNonUnifiedProvider, EPiServer.Framework" />
     </virtualPathProviders>
   </episerver.framework>
-  <runtime>
-    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-      <dependentAssembly>
-        <assemblyIdentity name="OpenWaves" publicKeyToken="7d0a8c4a744cf5c7" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-1.0.85.259" newVersion="1.0.85.259" />
-      </dependentAssembly>
-    </assemblyBinding>
-  </runtime>
 </configuration>
