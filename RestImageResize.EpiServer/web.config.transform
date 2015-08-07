@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <episerver.framework>
+    <virtualPathProviders>
+      <add name="ImagesTransformVPP" virtualPath="~/TransformedImages/" physicalPath="[appDataPath]\TransformedImages" bypassAccessCheck="true" useRouting="true" type="EPiServer.Web.Hosting.VirtualPathNonUnifiedProvider, EPiServer.Framework" />
+    </virtualPathProviders>
+  </episerver.framework>
+</configuration>
