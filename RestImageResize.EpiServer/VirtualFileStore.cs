@@ -43,7 +43,7 @@ namespace RestImageResize.EPiServer
 
             if (!Directory.Exists(_storePath))
             {
-                Directory.CreateDirectory(storePath);
+                Directory.CreateDirectory(_storePath);
             }
         }
 
