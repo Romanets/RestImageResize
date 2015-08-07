@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiPacka
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.EPiServer", "RestImageResize.EPiServer\RestImageResize.EPiServer.csproj", "{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F345787E-4760-4B88-83DF-369137C3F07E} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+		{4C1F4E31-4158-484E-B104-A4D9F6E3B231} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
 	EndGlobalSection
 EndGlobal
