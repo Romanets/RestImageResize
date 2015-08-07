@@ -42,8 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="OpenWaves">
+    <Reference Include="OpenWaves, Version=1.0.85.259, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenWaves.1.0.85.259\lib\net40\OpenWaves.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="OpenWaves.ImageTransformations">
       <HintPath>..\packages\OpenWaves.ImageTransformations.1.0.85.251\lib\net40\OpenWaves.ImageTransformations.dll</HintPath>
@@ -197,7 +198,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

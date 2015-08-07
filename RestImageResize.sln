@@ -1,33 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebPackageTest", "RestImageResize.WebPackageTest\RestImageResize.WebPackageTest.csproj", "{F345787E-4760-4B88-83DF-369137C3F07E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize", "RestImageResize\RestImageResize.csproj", "{61C67F04-6B5E-4585-BC89-67C43AB47B2C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{475C0A9A-073B-4788-A2A3-386E67F22458}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebTest", "RestImageResize.WebTest\RestImageResize.WebTest.csproj", "{4C1F4E31-4158-484E-B104-A4D9F6E3B231}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiTest", "RestImageResize.WebEPiTest\RestImageResize.WebEPiTest.csproj", "{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RestImageResize.EPiServer", "RestImageResize.EPiServer", "{ABEABD99-0F1E-40CC-81D3-F838D5726B93}"
-	ProjectSection(SolutionItems) = preProject
-		RestImageResize.EpiServer\nuget-pack.cmd = RestImageResize.EpiServer\nuget-pack.cmd
-		RestImageResize.EpiServer\RestImageResize.EPiServer.nuspec = RestImageResize.EpiServer\RestImageResize.EPiServer.nuspec
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{4B417184-AB21-46B1-917D-BADBA7FDCBE9}"
-	ProjectSection(SolutionItems) = preProject
-		RestImageResize.EpiServer\App_Start\OpenWavesImageTransformationsInitModule.cs.pp = RestImageResize.EpiServer\App_Start\OpenWavesImageTransformationsInitModule.cs.pp
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiPackageTest", "RestImageResize.WebEPiPackageTest\RestImageResize.WebEPiPackageTest.csproj", "{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.EPiServer", "RestImageResize.EPiServer\RestImageResize.EPiServer.csproj", "{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{881944F9-24A1-41E5-985B-F38A91E9D325}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,11 +49,18 @@ Global
 		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4B417184-AB21-46B1-917D-BADBA7FDCBE9} = {ABEABD99-0F1E-40CC-81D3-F838D5726B93}
+		{F345787E-4760-4B88-83DF-369137C3F07E} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+		{4C1F4E31-4158-484E-B104-A4D9F6E3B231} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
 	EndGlobalSection
 EndGlobal
