@@ -1,16 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebPackageTest", "RestImageResize.WebPackageTest\RestImageResize.WebPackageTest.csproj", "{F345787E-4760-4B88-83DF-369137C3F07E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize", "RestImageResize\RestImageResize.csproj", "{61C67F04-6B5E-4585-BC89-67C43AB47B2C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{475C0A9A-073B-4788-A2A3-386E67F22458}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebTest", "RestImageResize.WebTest\RestImageResize.WebTest.csproj", "{4C1F4E31-4158-484E-B104-A4D9F6E3B231}"
 EndProject
