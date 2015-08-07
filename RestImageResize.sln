@@ -15,12 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiPacka
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.EPiServer", "RestImageResize.EPiServer\RestImageResize.EPiServer.csproj", "{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RestImageResize.EPiServer-Old", "RestImageResize.EPiServer-Old", "{59E3576A-09C4-4A57-A57D-C56FE6B020C3}"
-	ProjectSection(SolutionItems) = preProject
-		RestImageResize.EpiServer-Old\nuget-pack.cmd = RestImageResize.EpiServer-Old\nuget-pack.cmd
-		RestImageResize.EpiServer-Old\RestImageResize.EPiServer.nuspec = RestImageResize.EpiServer-Old\RestImageResize.EPiServer.nuspec
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
