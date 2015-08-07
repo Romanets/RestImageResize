@@ -81,8 +81,9 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OpenWaves">
+    <Reference Include="OpenWaves, Version=1.0.85.259, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenWaves.1.0.85.259\lib\net40\OpenWaves.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="OpenWaves.ImageTransformations">
       <HintPath>..\packages\OpenWaves.ImageTransformations.1.0.85.251\lib\net40\OpenWaves.ImageTransformations.dll</HintPath>

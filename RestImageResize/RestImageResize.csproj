@@ -36,8 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenWaves, Version=1.0.85.259, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\OpenWaves.1.0.85.259\lib\net40\OpenWaves.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="OpenWaves.ImageTransformations, Version=1.0.85.251, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
