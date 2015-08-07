@@ -19,4 +19,7 @@
       <dependency id="OpenWaves.ImageTransformations.EPiServer" version="1.0.85.251" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="readme.txt" target="" />
+  </files>
 </package>
