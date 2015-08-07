@@ -126,6 +126,10 @@
       <HintPath>..\packages\OpenWaves.ImageTransformations.1.0.85.251\lib\net40\OpenWaves.ImageTransformations.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OpenWaves.ImageTransformations.EPiServer, Version=1.0.85.251, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenWaves.ImageTransformations.EPiServer.1.0.85.251\lib\net40\OpenWaves.ImageTransformations.EPiServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="OpenWaves.ImageTransformations.Web, Version=1.0.85.251, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenWaves.ImageTransformations.Web.1.0.85.251\lib\net40\OpenWaves.ImageTransformations.Web.dll</HintPath>
       <Private>True</Private>
@@ -176,6 +180,7 @@
   <ItemGroup>
     <Compile Include="ImageDataFileProvider.cs" />
     <Compile Include="ImageDataVirtualFile.cs" />
+    <Compile Include="InstallationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VirtualFileProviderCombiner.cs" />
     <Compile Include="VirtualFileStore.cs" />
