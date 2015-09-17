@@ -27,6 +27,50 @@ For older versions:
 
     OpenWaves.ServiceLocator.SetResolver(new OpenWaves.BasicResolver().RegisterWebImageTransformationModule());
 
+## Request protection
+
+Image transformation queries can be protected from DOS attacs from a third-party by hashing a query with a private key.
+
+By default all valid private keys should be added to `RestImageResize.PrivateKeys` app setting in format `{pk1:abc123|pk2:456edf}` (keys are pipe-delimited, each containing a name and a private key itself).
+It is also possible to use another storage (eg EPiServer) for private keys: implement your own `IPrivateKeyProvider` and register it in OpenWaves service resolver:
+
+```
+public class HardcodedPrivateKeyProvider : IPrivateKeyProvider
+{
+    public IEnumerable<PrivateKey> GetAllPrivateKeys()
+    {
+        return new[]
+        {
+            new PrivateKey
+            {
+                Name = "MySecretKey",
+                Key = "123456789abcdef"
+            }
+        };
+    }
+}
+
+// In app configuration code:
+OpenWaves.ServiceLocator.SetResolver(new OpenWaves.BasicResolver()
+    .RegisterRestImageResize()
+    .Register<IPrivateKeyProvider>(new HardcodedPrivateKeyProvider())
+);
+```
+
+When at least one private key is configured, all image transformation requests should contain additional `h` query string parameter with SHA1 hash of the query in format (strings are lowercased):
+
+    private-key:width:height:transform
+
+For example, for the URL `http://myserver.com/images/logo.png?width=200&height=100&transform=DownFit` and a private key `123456789ABCDEF`, SHA1 hash of the query string `123456789abcdef:200:100:downfit`, which is `2649a43c840fb3398e61672b988917e9c4109cd3` should be added in `h` parameter.
+So the resulting URL would be: `http://myserver.com/images/logo.png?width=200&height=100&transform=downfit&h=2649a43c840fb3398e61672b988917e9c4109cd3`.
+
+If provided hash is wrong, then transformation parameters were changed or private key is not valid. In this case `403 Forbidden` error will be returned from the server.
+
+C# clients could use `RestImageResize.Security.HashGenerator` from `RestImageResize` assembly to generate hashes for image queries:
+
+    var hashGenerator = new RestImageResize.Security.HashGenerator();
+    var hash = hashGenerator.ComputeHash("123456789ABCDEF", 200, 100, ImageTransform.DownFit);
+
 [1]: http://nuget.org/
 [2]: http://nuget.org/packages/RestImageResize/
 [3]: http://nuget.org/packages/RestImageResize.EpiServer/
