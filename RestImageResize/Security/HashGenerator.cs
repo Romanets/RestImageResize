@@ -10,7 +10,7 @@ namespace RestImageResize.Security
     {
         public string ComputeHash(string privateKey, int width, int height, ImageTransform transform)
         {
-            var values = new[] { privateKey, width.ToString(), height.ToString(), transform.ToString() };
+            var values = new[] { privateKey, width.ToString(), height.ToString(), transform.ToString().ToLower() };
             var bytes = Encoding.ASCII.GetBytes(string.Join(":", values));
 
             var sha1 = SHA1.Create();
