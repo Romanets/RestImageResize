@@ -64,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Security\HashGenerator.cs" />
+    <Compile Include="Security\PrivateKey.cs" />
+    <Compile Include="Security\QueryAuthorizer.cs" />
     <Compile Include="Utils\ServiceLocatorUtils.cs" />
     <Compile Include="Utils\WrapResolver.cs" />
     <Compile Include="UniversalImageTransformationParcer.cs" />

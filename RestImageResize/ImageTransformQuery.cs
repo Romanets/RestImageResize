@@ -23,6 +23,10 @@ namespace RestImageResize
         /// </summary>
         public ImageTransform Transform { get; set; }
 
+        /// <summary>
+        /// Gets or sets the hash of the query.
+        /// </summary>
+        public string Hash { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is empty.
@@ -50,7 +54,8 @@ namespace RestImageResize
                 {
                     Width = (int)SmartConvert.ChangeType<uint>(queryString["width"]),
                     Height = (int)SmartConvert.ChangeType<uint>(queryString["height"]),
-                    Transform = SmartConvert.ChangeType(queryString["transform"], defaultTransform)
+                    Transform = SmartConvert.ChangeType(queryString["transform"], defaultTransform),
+                    Hash = queryString["h"]
                 };
 
             return instance;

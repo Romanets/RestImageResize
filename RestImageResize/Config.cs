@@ -1,4 +1,7 @@
-﻿using RestImageResize.Utils;
+﻿using System.Collections.Generic;
+using System.Linq;
+using RestImageResize.Security;
+using RestImageResize.Utils;
 
 namespace RestImageResize
 {
@@ -13,6 +16,7 @@ namespace RestImageResize
             // ReSharper disable MemberHidesStaticFromOuterClass
 
             public const string DefaultTransform = Prefix + "DefautTransform";
+            public const string PrivateKeys = Prefix + "PrivateKeys";
 
             // ReSharper restore MemberHidesStaticFromOuterClass
         }
@@ -23,6 +27,22 @@ namespace RestImageResize
         public static ImageTransform DefaultTransform
         {
             get { return ConfigUtils.ReadAppSetting(AppSettingKeys.DefaultTransform, ImageTransform.DownFit); }
+        }
+
+        public static IList<PrivateKey> PrivateKeys
+        {
+            get
+            {
+                var privateKeysString = ConfigUtils.ReadAppSetting<string>(AppSettingKeys.PrivateKeys);
+                var privateKeys = privateKeysString.Split('|')
+                    .Select(val => new PrivateKey
+                    {
+                        Name = val.Split(':').First(),
+                        Key = val.Split(':').Last()
+                    })
+                    .ToList();
+                return privateKeys;
+            }
         }
     }
 }

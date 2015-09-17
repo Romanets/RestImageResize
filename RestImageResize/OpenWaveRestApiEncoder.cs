@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Web;
 using OpenWaves;
 using OpenWaves.ImageTransformations;
 using OpenWaves.ImageTransformations.Web;
 using RestImageResize.Contracts;
+using RestImageResize.Security;
 using RestImageResize.Utils;
 
 namespace RestImageResize
@@ -36,11 +39,13 @@ namespace RestImageResize
             IWebImageTransformationService imageTransformService = null,
             IImageTransformationBuilderFactory imageTransformationBuilderFactory = null,
             ImageTransform? defaultImageTransform = null,
-            IImageTransformationParser imageTransformationParser = null)
+            IImageTransformationParser imageTransformationParser = null,
+            QueryAuthorizer queryAuthorizer = null)
         {
             ImageTransformationService = imageTransformService ?? OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>();
             ImageTransformationBuilderFactory = imageTransformationBuilderFactory ?? OpenWaves.ServiceLocator.Resolve<IImageTransformationBuilderFactory>();
             DefaultImageTransform = defaultImageTransform ?? Config.DefaultTransform;
+            QueryAuthorizer = queryAuthorizer ?? new QueryAuthorizer();
 
             var wrapResolver = new WrapResolver(ServiceLocatorUtils.GetCurrentResolver());
             wrapResolver.Register<IImageTransformationParser>(imageTransformationParser ?? new UniversalImageTransformationParser());
@@ -61,6 +66,11 @@ namespace RestImageResize
         /// Gets the default image transform.
         /// </summary>
         protected virtual ImageTransform DefaultImageTransform { get; private set; }
+
+        /// <summary>
+        /// Gets the query authorizer.
+        /// </summary>
+        protected virtual QueryAuthorizer QueryAuthorizer { get; private set; }
 
         /// <summary>
         /// Determines whether URL is supported to encode (contains image resizing request).
@@ -102,6 +112,8 @@ namespace RestImageResize
 
             var transformQuery = ImageTransformQuery.FromQueryString(uri.GetQueryString(), DefaultImageTransform);
 
+            EnsureAuthorizedQuery(transformQuery);
+
             var transformBuilder = ImageTransformationBuilderFactory.CreateBuilder();
             transformBuilder.Width = transformQuery.Width;
             transformBuilder.Height = transformQuery.Height;
@@ -109,6 +121,18 @@ namespace RestImageResize
 
             Url url = ImageTransformationService.GetTransformedImageUrl(Url.Parse(uri.ToString()), transformBuilder);
             return new Uri(url.ToString(), UriKind.RelativeOrAbsolute);
+        }
+
+        private void EnsureAuthorizedQuery(ImageTransformQuery query)
+        {
+            var authorized = QueryAuthorizer.IsAuthorized(query);
+
+            if (!authorized)
+            {
+                throw new HttpException((int) HttpStatusCode.Forbidden,
+                    string.Format("Wrong hash '{0}' for query 'w={1}&h={2}&t={3}'",
+                        query.Hash, query.Width, query.Height, Enum.GetName(typeof(ImageTransform), query.Transform).ToLower()));
+            }
         }
     }
 }
