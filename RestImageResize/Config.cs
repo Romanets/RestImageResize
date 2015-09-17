@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using RestImageResize.Security;
 using RestImageResize.Utils;
 
 namespace RestImageResize
@@ -10,7 +9,7 @@ namespace RestImageResize
     /// </summary>
     internal static class Config
     {
-        private static class AppSettingKeys
+        internal static class AppSettingKeys
         {
             private const string Prefix = "RestImageResize.";
             // ReSharper disable MemberHidesStaticFromOuterClass
@@ -29,26 +28,12 @@ namespace RestImageResize
             get { return ConfigUtils.ReadAppSetting(AppSettingKeys.DefaultTransform, ImageTransform.DownFit); }
         }
 
-        public static IList<PrivateKey> PrivateKeys
+        /// <summary>
+        /// Gets configured private keys as string in format "{pk1:abc123|pk2:456edf}" (keys are pipe-delimited, each containing a name and a private key itself).
+        /// </summary>
+        public static string PrivateKeys
         {
-            get
-            {
-                var privateKeysString = ConfigUtils.ReadAppSetting<string>(AppSettingKeys.PrivateKeys);
-
-                if (string.IsNullOrEmpty(privateKeysString))
-                {
-                    return new List<PrivateKey>();
-                }
-
-                var privateKeys = privateKeysString.Split('|')
-                    .Select(val => new PrivateKey
-                    {
-                        Name = val.Split(':').First(),
-                        Key = val.Split(':').Last()
-                    })
-                    .ToList();
-                return privateKeys;
-            }
+            get { return ConfigUtils.ReadAppSetting<string>(AppSettingKeys.PrivateKeys); }
         }
     }
 }

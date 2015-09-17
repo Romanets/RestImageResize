@@ -6,11 +6,18 @@ namespace RestImageResize.Security
 {
     public class QueryAuthorizer
     {
-        private readonly HashGenerator _hashGenerator = new HashGenerator();
+        private readonly IPrivateKeyProvider _privateKeyProvider;
+        private readonly HashGenerator _hashGenerator;
+
+        public QueryAuthorizer(IPrivateKeyProvider privateKeyProvider, HashGenerator hashGenerator)
+        {
+            _privateKeyProvider = privateKeyProvider;
+            _hashGenerator = hashGenerator;
+        }
 
         public virtual bool IsAuthorized(ImageTransformQuery query)
         {
-            var privateKeys = Config.PrivateKeys;
+            var privateKeys = _privateKeyProvider.GetAllPrivateKeys().ToList();
 
             if (!privateKeys.Any())
             {

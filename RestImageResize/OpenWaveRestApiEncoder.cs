@@ -39,13 +39,19 @@ namespace RestImageResize
             IWebImageTransformationService imageTransformService = null,
             IImageTransformationBuilderFactory imageTransformationBuilderFactory = null,
             ImageTransform? defaultImageTransform = null,
-            IImageTransformationParser imageTransformationParser = null,
-            QueryAuthorizer queryAuthorizer = null)
+            IImageTransformationParser imageTransformationParser = null)
         {
             ImageTransformationService = imageTransformService ?? OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>();
             ImageTransformationBuilderFactory = imageTransformationBuilderFactory ?? OpenWaves.ServiceLocator.Resolve<IImageTransformationBuilderFactory>();
             DefaultImageTransform = defaultImageTransform ?? Config.DefaultTransform;
-            QueryAuthorizer = queryAuthorizer ?? new QueryAuthorizer();
+
+            IPrivateKeyProvider privateKeyProvider;
+            if (!OpenWaves.ServiceLocator.TryResolve(out privateKeyProvider))
+            {
+                privateKeyProvider = new AppSettingsPrivateKeyProvider();
+            }
+
+            QueryAuthorizer = new QueryAuthorizer(privateKeyProvider, new HashGenerator());
 
             var wrapResolver = new WrapResolver(ServiceLocatorUtils.GetCurrentResolver());
             wrapResolver.Register<IImageTransformationParser>(imageTransformationParser ?? new UniversalImageTransformationParser());

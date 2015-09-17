@@ -64,7 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Security\AppSettingsPrivateKeyProvider.cs" />
     <Compile Include="Security\HashGenerator.cs" />
+    <Compile Include="Security\IPrivateKeyProvider.cs" />
     <Compile Include="Security\PrivateKey.cs" />
     <Compile Include="Security\QueryAuthorizer.cs" />
     <Compile Include="Utils\ServiceLocatorUtils.cs" />
