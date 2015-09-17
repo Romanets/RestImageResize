@@ -34,6 +34,12 @@ namespace RestImageResize
             get
             {
                 var privateKeysString = ConfigUtils.ReadAppSetting<string>(AppSettingKeys.PrivateKeys);
+
+                if (string.IsNullOrEmpty(privateKeysString))
+                {
+                    return new List<PrivateKey>();
+                }
+
                 var privateKeys = privateKeysString.Split('|')
                     .Select(val => new PrivateKey
                     {
