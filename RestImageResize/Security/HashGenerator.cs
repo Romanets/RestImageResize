@@ -20,7 +20,13 @@ namespace RestImageResize.Security
         /// <param name="transform">Image transformation mode.</param>
         public string ComputeHash(string privateKey, int width, int height, ImageTransform transform)
         {
-            var values = new[] { privateKey, width.ToString(), height.ToString(), transform.ToString().ToLower() };
+            var values = new[]
+            {
+                privateKey.ToLower(),
+                width.ToString(),
+                height.ToString(),
+                transform.ToString().ToLower()
+            };
             var bytes = Encoding.ASCII.GetBytes(string.Join(":", values));
 
             var sha1 = SHA1.Create();
