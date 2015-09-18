@@ -2,6 +2,7 @@
 <configuration>
   <appSettings>
     <add key="RestImageResize.DefautTransform" value="downFit"/>
+    <add key="RestImageResize.PrivateKeys" value="" />
   </appSettings>
   <system.webServer>
     <modules>
