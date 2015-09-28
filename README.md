@@ -66,9 +66,9 @@ So the resulting URL would be: `http://myserver.com/images/logo.png?width=200&he
 
 If provided hash is wrong, then transformation parameters were changed or private key is not valid. In this case `403 Forbidden` error will be returned from the server.
 
-C# clients could use `RestImageResize.Security.HashGenerator` from `RestImageResize` assembly to generate hashes for image queries:
+C# clients could use `RestImageResize.Security.Sha1HashGenerator` from `RestImageResize` assembly to generate hashes for image queries:
 
-    var hashGenerator = new RestImageResize.Security.HashGenerator();
+    var hashGenerator = new RestImageResize.Security.Sha1HashGenerator();
     var hash = hashGenerator.ComputeHash("123456789ABCDEF", 200, 100, ImageTransform.DownFit);
 
 [1]: http://nuget.org/
