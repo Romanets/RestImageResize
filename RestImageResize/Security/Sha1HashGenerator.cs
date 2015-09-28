@@ -7,12 +7,12 @@ using System.Text;
 namespace RestImageResize.Security
 {
     /// <summary>
-    /// Image transformation query hash generator.
+    /// SHA1-based image transformation query hash generator.
     /// </summary>
-    public class HashGenerator
+    public class Sha1HashGenerator : IHashGenerator
     {
         /// <summary>
-        /// Computes a hash for provided image transformation parameters.
+        /// Computes a SHA1 hash for provided image transformation parameters.
         /// </summary>
         /// <param name="privateKey">Private key received from the image service administrator.</param>
         /// <param name="width">Image width.</param>

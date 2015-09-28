@@ -39,23 +39,13 @@ namespace RestImageResize
             IWebImageTransformationService imageTransformService = null,
             IImageTransformationBuilderFactory imageTransformationBuilderFactory = null,
             ImageTransform? defaultImageTransform = null,
-            IImageTransformationParser imageTransformationParser = null)
+            IImageTransformationParser imageTransformationParser = null,
+            IQueryAuthorizer queryAuthorizer = null)
         {
             ImageTransformationService = imageTransformService ?? OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>();
             ImageTransformationBuilderFactory = imageTransformationBuilderFactory ?? OpenWaves.ServiceLocator.Resolve<IImageTransformationBuilderFactory>();
             DefaultImageTransform = defaultImageTransform ?? Config.DefaultTransform;
-
-            IPrivateKeyProvider privateKeyProvider;
-            if (!OpenWaves.ServiceLocator.TryResolve(out privateKeyProvider))
-            {
-                privateKeyProvider = new AppSettingsPrivateKeyProvider();
-            }
-
-            QueryAuthorizer = new QueryAuthorizer(privateKeyProvider, new HashGenerator());
-
-            var wrapResolver = new WrapResolver(ServiceLocatorUtils.GetCurrentResolver());
-            wrapResolver.Register<IImageTransformationParser>(imageTransformationParser ?? new UniversalImageTransformationParser());
-            ServiceLocator.SetResolver(wrapResolver);
+            QueryAuthorizer = queryAuthorizer ?? OpenWaves.ServiceLocator.Resolve<IQueryAuthorizer>();
         }
 
         /// <summary>
@@ -76,7 +66,7 @@ namespace RestImageResize
         /// <summary>
         /// Gets the query authorizer.
         /// </summary>
-        protected virtual QueryAuthorizer QueryAuthorizer { get; private set; }
+        protected virtual IQueryAuthorizer QueryAuthorizer { get; private set; }
 
         /// <summary>
         /// Determines whether URL is supported to encode (contains image resizing request).
@@ -136,8 +126,8 @@ namespace RestImageResize
             if (!authorized)
             {
                 throw new HttpException((int) HttpStatusCode.Forbidden,
-                    string.Format("Wrong hash '{0}' for query 'w={1}&h={2}&t={3}'",
-                        query.Hash, query.Width, query.Height, Enum.GetName(typeof(ImageTransform), query.Transform).ToLower()));
+                    string.Format("Forbidden query 'w={0}&h={1}&t={2}&h={3}'",
+                        query.Width, query.Height, Enum.GetName(typeof(ImageTransform), query.Transform).ToLower(), query.Hash));
             }
         }
     }

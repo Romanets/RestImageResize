@@ -5,14 +5,14 @@ using System.Linq;
 namespace RestImageResize.Security
 {
     /// <summary>
-    /// Authorizes image transformation queries.
+    /// Authorizes image transformation queries by verifying query hash with configured private keys.
     /// </summary>
-    public class QueryAuthorizer
+    public class PrivateKeyQueryAuthorizer : IQueryAuthorizer
     {
         private readonly IPrivateKeyProvider _privateKeyProvider;
-        private readonly HashGenerator _hashGenerator;
+        private readonly IHashGenerator _hashGenerator;
 
-        public QueryAuthorizer(IPrivateKeyProvider privateKeyProvider, HashGenerator hashGenerator)
+        public PrivateKeyQueryAuthorizer(IPrivateKeyProvider privateKeyProvider, IHashGenerator hashGenerator)
         {
             _privateKeyProvider = privateKeyProvider;
             _hashGenerator = hashGenerator;
@@ -22,7 +22,7 @@ namespace RestImageResize.Security
         /// Checks if image transformation query hash is valid (computed using a valid private key).
         /// </summary>
         /// <param name="query">Image transformation query.</param>
-        public virtual bool IsAuthorized(ImageTransformQuery query)
+        public bool IsAuthorized(ImageTransformQuery query)
         {
             var privateKeys = _privateKeyProvider.GetAllPrivateKeys().ToList();
 
