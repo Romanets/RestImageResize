@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Initializer.cs" />
     <Compile Include="Security\AppSettingsPrivateKeyProvider.cs" />
     <Compile Include="Security\Sha1HashGenerator.cs" />
     <Compile Include="Security\IHashGenerator.cs" />

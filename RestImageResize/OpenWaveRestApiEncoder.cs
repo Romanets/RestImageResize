@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using OpenWaves;
-using OpenWaves.ImageTransformations;
 using OpenWaves.ImageTransformations.Web;
 using RestImageResize.Contracts;
 using RestImageResize.Security;
@@ -34,12 +33,11 @@ namespace RestImageResize
         /// <param name="imageTransformService">The image transform service.</param>
         /// <param name="imageTransformationBuilderFactory">The image transformation builder factory.</param>
         /// <param name="defaultImageTransform">The image transform type that should be used if not specified in query.</param>
-        /// <param name="imageTransformationParser">The image transformation parser.</param>
+        /// <param name="queryAuthorizer">The image transformation query authorizer.</param>
         public OpenWaveRestApiEncoder(
             IWebImageTransformationService imageTransformService = null,
             IImageTransformationBuilderFactory imageTransformationBuilderFactory = null,
             ImageTransform? defaultImageTransform = null,
-            IImageTransformationParser imageTransformationParser = null,
             IQueryAuthorizer queryAuthorizer = null)
         {
             ImageTransformationService = imageTransformService ?? OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>();
