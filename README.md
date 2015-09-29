@@ -19,7 +19,7 @@ Parameter "transform" can be specified with one of the following values: "fit", 
 
 After installing [RestImageResize.EPiServer][3] package, add next code to your initialization module.
 
-For EPiServer 7.5/8+:
+For EPiServer 7.5/8/9+:
 
     OpenWaves.ServiceLocator.SetResolver(new OpenWaves.BasicResolver().RegisterRestImageResize());
 

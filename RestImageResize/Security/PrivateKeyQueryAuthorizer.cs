@@ -12,6 +12,11 @@ namespace RestImageResize.Security
         private readonly IPrivateKeyProvider _privateKeyProvider;
         private readonly IHashGenerator _hashGenerator;
 
+        /// <summary>
+        /// Creates an authorizer.
+        /// </summary>
+        /// <param name="privateKeyProvider">Private key provider.</param>
+        /// <param name="hashGenerator">Hash generator.</param>
         public PrivateKeyQueryAuthorizer(IPrivateKeyProvider privateKeyProvider, IHashGenerator hashGenerator)
         {
             _privateKeyProvider = privateKeyProvider;

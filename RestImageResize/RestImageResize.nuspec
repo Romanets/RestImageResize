@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>$id$</id>
     <version>$version$</version>
@@ -10,11 +10,10 @@
     <iconUrl>https://raw.github.com/VladimirLevchuk/EPiProperties/master/EPiProperties/images/creuna.gif</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Updated behaviour when one of the 'width' of 'height' parameter is not set.</releaseNotes>
-    <copyright>Copyright 2013</copyright>
-    <tags>Creuna Image Resize Transform OpenWaves ASP.NET EPiServer</tags>
+    <releaseNotes>
+- Added image transformation request protection
+    </releaseNotes>
+    <copyright>Copyright © Roman Mironets 2015</copyright>
+    <tags>Creuna Image Resize Transform OpenWaves ASP.NET</tags>
   </metadata>
-  <files>
-        <file src="*.transform" target="content"/>
-    </files>
 </package>

@@ -3,13 +3,15 @@
   <metadata>
     <id>$id$</id>
     <version>$version$</version>
-    <title>RestImageResize for EPiServer 6/7/8+</title>
+    <title>$title$</title>
     <authors>$author$</authors>
     <projectUrl>https://github.com/Romanets/RestImageResize</projectUrl>
     <iconUrl>https://raw.github.com/VladimirLevchuk/EPiProperties/master/EPiProperties/images/creuna.gif</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>- Added support for EPiServer 7.5/8+</releaseNotes>
+    <releaseNotes>
+- Added support for EPiServer 7.5/8/9+
+    </releaseNotes>
     <copyright>Copyright © Roman Mironets 2015</copyright>
     <tags>Creuna Image Resize Transform OpenWaves ASP.NET EPiServer</tags>
     <dependencies>

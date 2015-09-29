@@ -3,7 +3,7 @@
 
 To enable RestImageResize add next code to your initialization module.
 
-For EPiServer 7.5/8+:
+For EPiServer 7.5/8/9+:
 
     OpenWaves.ServiceLocator.SetResolver(new OpenWaves.BasicResolver().RegisterRestImageResize());
 
