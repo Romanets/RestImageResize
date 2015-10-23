@@ -5,8 +5,8 @@
 [assembly: AssemblyProduct("RestImageResize")]
 [assembly: AssemblyDescription("Provides HttpModule that adds support of simple rest API to OpenWaves.ImageTransformations.Web package.")]
 [assembly: AssemblyCompany("Roman Mironets, Creuna Kharkiv office")]
-[assembly: AssemblyCopyright("Copyright © Roman Mironets 2015")]
+[assembly: AssemblyCopyright("Copyright © Creuna 2015")]
 
 // Product version
-[assembly: AssemblyVersion("1.1.0")]
-[assembly: AssemblyInformationalVersion("1.1.0")]
+[assembly: AssemblyVersion("1.1.1")]
+[assembly: AssemblyInformationalVersion("1.1.1")]

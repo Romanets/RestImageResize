@@ -8,12 +8,13 @@
     <owners>$author$</owners>
     <projectUrl>https://github.com/Romanets/RestImageResize</projectUrl>
     <iconUrl>https://raw.github.com/VladimirLevchuk/EPiProperties/master/EPiProperties/images/creuna.gif</iconUrl>
+    <licenseUrl>https://raw.githubusercontent.com/Romanets/RestImageResize/master/License.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-- Added image transformation request protection
+- Mit License added.
     </releaseNotes>
-    <copyright>Copyright © Roman Mironets 2015</copyright>
+    <copyright>Copyright © Creuna 2015</copyright>
     <tags>Creuna Image Resize Transform OpenWaves ASP.NET</tags>
   </metadata>
 </package>
