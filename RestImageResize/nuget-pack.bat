@@ -1,2 +1,2 @@
-nuget pack -Build -Prop Configuration=Release -Symbols
+nuget pack RestImageResize.csproj -Build -Prop Configuration=Release -Symbols
 pause
