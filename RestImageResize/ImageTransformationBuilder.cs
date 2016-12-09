@@ -2,6 +2,7 @@
 using System.Globalization;
 using OpenWaves.ImageTransformations;
 using RestImageResize.Contracts;
+using RestImageResize.Transformations;
 using RestImageResize.Utils;
 
 namespace RestImageResize
@@ -178,6 +179,20 @@ namespace RestImageResize
         {
             bool ignoreMissedDimension = (TransformType == ImageTransform.Fit || TransformType == ImageTransform.DownFit);
 
+            if (TransformType == ImageTransform.ResizeMin || TransformType == ImageTransform.DownResizeMin)
+            {
+                if (Width == 0)
+                {
+                    Width = Height;
+                }
+
+                if (Height == 0)
+                {
+                    Height = Width;
+                }
+            }
+
+
             if (Width == 0)
             {
                 Width = ignoreMissedDimension ? int.MaxValue : image.Width;
@@ -214,6 +229,11 @@ namespace RestImageResize
                     return new CentralCropTransformation(width, height);
                 case ImageTransform.Stretch:
                     return new StretchTransformation(width, height);
+                case ImageTransform.ResizeMin:
+                    return new ResizeMinTransformation(width, height);
+                case ImageTransform.DownResizeMin:
+                    return new DownResizeMinTransformation(width, height);
+
                 default:
                     throw new NotSupportedException("Not supported image transformation type.");
             }

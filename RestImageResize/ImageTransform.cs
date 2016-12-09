@@ -33,6 +33,16 @@
         /// <summary>
         /// The stretch transformation.
         /// </summary>
-        Stretch = 5
+        Stretch = 5,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ResizeMin = 6,
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DownResizeMin = 7,
     }
 }

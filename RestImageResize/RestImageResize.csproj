@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="Transformations\ResizeMinTransformation.cs" />
     <Compile Include="Security\AppSettingsPrivateKeyProvider.cs" />
     <Compile Include="Security\Sha1HashGenerator.cs" />
     <Compile Include="Security\IHashGenerator.cs" />
@@ -74,7 +75,7 @@
     <Compile Include="Security\PrivateKeyQueryAuthorizer.cs" />
     <Compile Include="Utils\ServiceLocatorUtils.cs" />
     <Compile Include="Utils\WrapResolver.cs" />
-    <Compile Include="UniversalImageTransformationParcer.cs" />
+    <Compile Include="UniversalImageTransformationParser.cs" />
     <Compile Include="Utils\ConfigUtils.cs" />
     <Compile Include="Contracts\IImageTransformationBuilder.cs" />
     <Compile Include="Contracts\IImageTransformationBuilderFactory.cs" />
