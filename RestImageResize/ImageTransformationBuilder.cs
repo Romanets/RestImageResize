@@ -134,6 +134,12 @@ namespace RestImageResize
         }
 
         /// <summary>
+        /// Gets or sets the image focus point.
+        /// This point will be as close to the center of your crop as possible while keeping the crop within the image
+        /// </summary>
+        public FocusPoint FocusPoint { get; set; }
+
+        /// <summary>
         /// Applies transformation to an image.
         /// </summary>
         /// <param name="image">The image.</param>
@@ -220,11 +226,15 @@ namespace RestImageResize
                 case ImageTransform.Fit:
                     return new ScaleToFitTransformation(width, height);
                 case ImageTransform.Fill:
-                    return new ScaleToFillTransformation(width, height);
+                    return FocusPoint != null ?
+                        new ScaleToFillFocusPointTransformation(FocusPoint, width, height) :
+                        new ScaleToFillTransformation(width, height);
                 case ImageTransform.DownFit:
                     return new ScaleDownToFitTransformation(width, height);
                 case ImageTransform.DownFill:
-                    return new ScaleDownToFillTransformation(width, height);
+                    return FocusPoint != null ? 
+                        new ScaleDownToFillFocusPointTransformation(FocusPoint, width, height) : 
+                        new ScaleDownToFillTransformation(width, height);
                 case ImageTransform.Crop:
                     return new CentralCropTransformation(width, height);
                 case ImageTransform.Stretch:

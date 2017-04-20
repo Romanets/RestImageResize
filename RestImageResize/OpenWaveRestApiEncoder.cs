@@ -112,6 +112,8 @@ namespace RestImageResize
             transformBuilder.Width = transformQuery.Width;
             transformBuilder.Height = transformQuery.Height;
             transformBuilder.TransformType = transformQuery.Transform;
+            transformBuilder.FocusPoint = transformQuery.FocusPoint;
+
 
             Url url = ImageTransformationService.GetTransformedImageUrl(Url.Parse(uri.ToString()), transformBuilder);
             return new Uri(url.ToString(), UriKind.RelativeOrAbsolute);

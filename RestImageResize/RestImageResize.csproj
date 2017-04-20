@@ -64,7 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Coordinates.cs" />
+    <Compile Include="CropArea.cs" />
+    <Compile Include="FocusPoint.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="Transformations\ScaleDownToFillFocusPointTransformation.cs" />
     <Compile Include="Transformations\ResizeMinTransformation.cs" />
     <Compile Include="Security\AppSettingsPrivateKeyProvider.cs" />
     <Compile Include="Security\Sha1HashGenerator.cs" />
@@ -73,6 +77,8 @@
     <Compile Include="Security\IQueryAuthorizer.cs" />
     <Compile Include="Security\PrivateKey.cs" />
     <Compile Include="Security\PrivateKeyQueryAuthorizer.cs" />
+    <Compile Include="Transformations\ScaleToFillFocusPointTransformation.cs" />
+    <Compile Include="Utils\FocusPointUtil.cs" />
     <Compile Include="Utils\ServiceLocatorUtils.cs" />
     <Compile Include="Utils\WrapResolver.cs" />
     <Compile Include="UniversalImageTransformationParser.cs" />

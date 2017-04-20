@@ -19,6 +19,11 @@ namespace RestImageResize
         public int Height { get; set; }
 
         /// <summary>
+        /// Gets or sets the desired focus point.
+        /// </summary>
+        public FocusPoint FocusPoint { get; set; }
+
+        /// <summary>
         /// Gets or sets the type of transformation that should be applied to an image.
         /// </summary>
         public ImageTransform Transform { get; set; }
@@ -57,6 +62,17 @@ namespace RestImageResize
                     Transform = SmartConvert.ChangeType(queryString["transform"], defaultTransform),
                     Hash = queryString["h"]
                 };
+
+            var stringCoordinates = queryString["center"]?.Split(',');
+
+            if (stringCoordinates?.Length >= 2)
+            {
+                instance.FocusPoint = new FocusPoint()
+                {
+                    Left = SmartConvert.ChangeType<float>(stringCoordinates[0]),
+                    Top = SmartConvert.ChangeType<float>(stringCoordinates[1])
+                };
+            }
 
             return instance;
         }
