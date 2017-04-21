@@ -4,28 +4,25 @@ using RestImageResize.Utils;
 
 namespace RestImageResize.Transformations
 {
-    public class ScaleToFillFocusPointTransformation : ScaleToFillTransformation
+    public class ResizeCropTransfomration : ImageTransformation
     {
         protected FocusPoint FocusPoint { get; set; }
 
-        public ScaleToFillFocusPointTransformation(FocusPoint focusPoint, int width, int height) : base(width, height)
+        public ResizeCropTransfomration(int width, int height) : base(width, height)
+        {
+        }
+
+        public ResizeCropTransfomration(FocusPoint focusPoint, int width, int height) : base(width, height)
         {
             this.FocusPoint = focusPoint;
         }
 
-        public ScaleToFillFocusPointTransformation(string serializedProperties) : base(serializedProperties)
+        public ResizeCropTransfomration(string serializedProperties) : base(serializedProperties)
         {
         }
 
         public override void ApplyToImage(IImage image)
         {
-            if (FocusPoint.Left < 0 || FocusPoint.Top < 0)
-            {
-                base.ApplyToImage(image);
-                return;
-            }
-
-            //Calculation from original ScaleToFillTransformation
             int width;
             int height;
             if ((double)image.Width / (double)image.Height < (double)this.Width / (double)this.Height)
@@ -59,10 +56,19 @@ namespace RestImageResize.Transformations
                 Width = this.Width,
                 Height = this.Height
             };
+
+            if (FocusPoint != null)
+            {
+                Coordinates focusPoint = FocusPointUtil.GetFocusPointCoordinates(image, FocusPoint.Left, FocusPoint.Top);
+                cropArea.CropPoint = FocusPointUtil.GetCropPoint(focusPoint, cropArea, image);
+            }
             
-            Coordinates focusPoint = FocusPointUtil.GetFocusPointCoordinates(image, FocusPoint.Left, FocusPoint.Top);
-            cropArea.CropPoint = FocusPointUtil.GetCropPoint(focusPoint, cropArea, image);
             return cropArea;
+        }
+
+        protected override IImageTransformation Scale(int width, int height)
+        {
+            return new ResizeCropTransfomration(width, height);
         }
     }
 }

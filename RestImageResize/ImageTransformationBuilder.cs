@@ -226,15 +226,11 @@ namespace RestImageResize
                 case ImageTransform.Fit:
                     return new ScaleToFitTransformation(width, height);
                 case ImageTransform.Fill:
-                    return FocusPoint != null ?
-                        new ScaleToFillFocusPointTransformation(FocusPoint, width, height) :
-                        new ScaleToFillTransformation(width, height);
+                    return new ScaleToFillTransformation(width, height);
                 case ImageTransform.DownFit:
                     return new ScaleDownToFitTransformation(width, height);
                 case ImageTransform.DownFill:
-                    return FocusPoint != null ? 
-                        new ScaleDownToFillFocusPointTransformation(FocusPoint, width, height) : 
-                        new ScaleDownToFillTransformation(width, height);
+                    return new ScaleDownToFillTransformation(width, height);
                 case ImageTransform.Crop:
                     return new CentralCropTransformation(width, height);
                 case ImageTransform.Stretch:
@@ -243,6 +239,8 @@ namespace RestImageResize
                     return new ResizeMinTransformation(width, height);
                 case ImageTransform.DownResizeMin:
                     return new DownResizeMinTransformation(width, height);
+                case ImageTransform.ResizeCrop:
+                    return new ResizeCropTransfomration(FocusPoint, width, height);
 
                 default:
                     throw new NotSupportedException("Not supported image transformation type.");

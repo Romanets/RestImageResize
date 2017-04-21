@@ -44,5 +44,10 @@
         /// 
         /// </summary>
         DownResizeMin = 7,
+
+        /// <summary>
+        /// The resize crop transformation
+        /// </summary>
+        ResizeCrop = 8
     }
 }
