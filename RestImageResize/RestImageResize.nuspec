@@ -12,8 +12,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      - ResizeMin/DownResizeMin transformations implemented (similar to http://imageprocessor.org/imageprocessor-web/imageprocessingmodule/resize/)
-      - Mit License added.
+      - v1.1.3 - ResizeCrop transformation implemented (similar to resizecrop in http://imageprocessor.org/imageprocessor-web/imageprocessingmodule/resize/)
+      - v1.1.2 - ResizeMin/DownResizeMin transformations implemented (similar to resizemin in http://imageprocessor.org/imageprocessor-web/imageprocessingmodule/resize/)
+      - v1.1.1 - Mit License added.
     </releaseNotes>
     <copyright>Copyright © Creuna 2015</copyright>
     <tags>Creuna Image Resize Transform OpenWaves ASP.NET</tags>
