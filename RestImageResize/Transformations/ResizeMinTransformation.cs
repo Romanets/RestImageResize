@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using OpenWaves.ImageTransformations;
 
@@ -14,7 +15,7 @@ namespace RestImageResize.Transformations
     /// original image 300px x 600px => ResizeMin to 100px x 150px
     ///     returns image 100px x 200px
     /// </summary>
-    public class ResizeMinTransformation : ImageTransformation
+    public class ResizeMinTransformation : ImageTransformation2
     {
         /// <summary>
         /// 
@@ -29,7 +30,7 @@ namespace RestImageResize.Transformations
         /// 
         /// </summary>
         /// <param name="serializedProperties"></param>
-        public ResizeMinTransformation(string serializedProperties)
+        public ResizeMinTransformation(IDictionary<string, string> serializedProperties)
             : base(serializedProperties)
         {}
 
@@ -37,25 +38,40 @@ namespace RestImageResize.Transformations
         /// 
         /// </summary>
         /// <param name="image"></param>
-        public override void ApplyToImage([NotNull] IImage image)
+        public override void ApplyToImage(TransformationContext context, [NotNull] IImage image)
         {
             if (image == null) throw new ArgumentNullException(nameof(image));
 
             if (image.Width == 0 || image.Height == 0)
                 return;
             
-            var scaleX = (double) image.Width / (double) Width;
-            var scaleY = (double) image.Height / (double) Height;
+            var scaleX = (double) image.Width / (double) context.Width;
+            var scaleY = (double) image.Height / (double) context.Height;
 
             if (scaleX <= scaleY)
             {
                 var newHeight = (int) Math.Round((double) image.Height / scaleX);
-                image.Scale(Width, newHeight);
+                image.Scale(context.Width, newHeight);
             }
             else
             {
                 var newWidth = (int) Math.Round((double) image.Width / scaleY);
-                image.Scale(newWidth, Height);
+                image.Scale(newWidth, context.Height);
+            }
+        }
+
+        protected override void Applying(TransformationContext context, IImage image)
+        {
+            base.Applying(context, image); 
+
+            if (context.Width == 0)
+            {
+                context.Width = Height;
+            }
+
+            if (context.Height == 0)
+            {
+                context.Height = Width;
             }
         }
 
@@ -89,7 +105,8 @@ namespace RestImageResize.Transformations
         /// 
         /// </summary>
         /// <param name="serializedProperties"></param>
-        public DownResizeMinTransformation(string serializedProperties) : base(serializedProperties)
+        public DownResizeMinTransformation(IDictionary<string, string> serializedProperties)
+            : base(serializedProperties)
         {
         }
 
@@ -97,9 +114,9 @@ namespace RestImageResize.Transformations
         /// 
         /// </summary>
         /// <param name="image"></param>
-        public override void ApplyToImage(IImage image)
+        public override void ApplyToImage(TransformationContext context, IImage image)
         {
-            if (image.Width <= this.Width || image.Height <= this.Height)
+            if (image.Width <= context.Width || image.Height <= context.Height)
                 return;
 
             base.ApplyToImage(image);

@@ -10,7 +10,7 @@ namespace RestImageResize
     /// <summary>
     /// The default implementation if <see cref="IImageTransformationBuilder"/> component.
     /// </summary>
-    public class ImageTransformationBuilder : IImageTransformationBuilder
+    public class ImageTransformationBuilder
     {
         private const string PropertiesStringSeparator = ";";
         private const string ValueSholdBePositiveOrZero = "Value should be positive or 0.";
@@ -146,7 +146,7 @@ namespace RestImageResize
         public void ApplyToImage(IImage image)
         {
             PrepareSize(image);
-            ImageTransformation = CreateTransformation();
+            throw new NotImplementedException();
             ImageTransformation.ApplyToImage(image);
         }
 
@@ -210,42 +210,42 @@ namespace RestImageResize
             }
         }
 
-        /// <summary>
-        /// Creates the image transformation to be applied.
-        /// </summary>
-        /// <returns>
-        /// The transformation instance.
-        /// </returns>
-        /// <exception cref="System.NotSupportedException">Not supported image transformation type.</exception>
-        protected virtual IImageTransformation CreateTransformation()
-        {
-            int width = Width;
-            int height = Height;
-            switch (TransformType)
-            {
-                case ImageTransform.Fit:
-                    return new ScaleToFitTransformation(width, height);
-                case ImageTransform.Fill:
-                    return new ScaleToFillTransformation(width, height);
-                case ImageTransform.DownFit:
-                    return new ScaleDownToFitTransformation(width, height);
-                case ImageTransform.DownFill:
-                    return new ScaleDownToFillTransformation(width, height);
-                case ImageTransform.Crop:
-                    return new CentralCropTransformation(width, height);
-                case ImageTransform.Stretch:
-                    return new StretchTransformation(width, height);
-                case ImageTransform.ResizeMin:
-                    return new ResizeMinTransformation(width, height);
-                case ImageTransform.DownResizeMin:
-                    return new DownResizeMinTransformation(width, height);
-                case ImageTransform.ResizeCrop:
-                    return new ResizeCropTransfomration(FocusPoint, width, height);
+        ///// <summary>
+        ///// Creates the image transformation to be applied.
+        ///// </summary>
+        ///// <returns>
+        ///// The transformation instance.
+        ///// </returns>
+        ///// <exception cref="System.NotSupportedException">Not supported image transformation type.</exception>
+        //protected virtual IImageTransformation CreateTransformation()
+        //{
+        //    int width = Width;
+        //    int height = Height;
+        //    switch (TransformType)
+        //    {
+        //        case ImageTransform.Fit:
+        //            return new ScaleToFitTransformation(width, height);
+        //        case ImageTransform.Fill:
+        //            return new ScaleToFillTransformation(width, height);
+        //        case ImageTransform.DownFit:
+        //            return new ScaleDownToFitTransformation(width, height);
+        //        case ImageTransform.DownFill:
+        //            return new ScaleDownToFillTransformation(width, height);
+        //        case ImageTransform.Crop:
+        //            return new CentralCropTransformation(width, height);
+        //        case ImageTransform.Stretch:
+        //            return new StretchTransformation(width, height);
+        //        case ImageTransform.ResizeMin:
+        //            return new ResizeMinTransformation(width, height);
+        //        case ImageTransform.DownResizeMin:
+        //            return new DownResizeMinTransformation(width, height);
+        //        case ImageTransform.ResizeCrop:
+        //            return new ResizeCropTransfomration(FocusPoint, width, height);
 
-                default:
-                    throw new NotSupportedException("Not supported image transformation type.");
-            }
-        }
+        //        default:
+        //            throw new NotSupportedException("Not supported image transformation type.");
+        //    }
+        //}
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

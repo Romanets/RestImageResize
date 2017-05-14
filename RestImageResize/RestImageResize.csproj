@@ -35,9 +35,8 @@
     <DocumentationFile>bin\Release\RestImageResize.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenWaves, Version=1.0.85.259, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenWaves.1.0.85.259\lib\net40\OpenWaves.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="OpenWaves, Version=1.0.88.340, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenWaves.1.0.88.340\lib\net40\OpenWaves.dll</HintPath>
     </Reference>
     <Reference Include="OpenWaves.ImageTransformations, Version=1.0.85.251, Culture=neutral, PublicKeyToken=7d0a8c4a744cf5c7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -68,7 +67,15 @@
     <Compile Include="CropArea.cs" />
     <Compile Include="FocusPoint.cs" />
     <Compile Include="Initializer.cs" />
-    <Compile Include="Transformations\ResizeCropTransfomration.cs" />
+    <Compile Include="Transformations\IImageTransformationPropertiesSerializer.cs" />
+    <Compile Include="Transformations\ImageTransformation2.cs" />
+    <Compile Include="Transformations\Migrated\CentralCropTransformation.cs" />
+    <Compile Include="Transformations\Migrated\ScaleDownToFillTransformation.cs" />
+    <Compile Include="Transformations\Migrated\ScaleDownToFitTransformation.cs" />
+    <Compile Include="Transformations\Migrated\ScaleToFillTransformation.cs" />
+    <Compile Include="Transformations\Migrated\ScaleToFitTransformation.cs" />
+    <Compile Include="Transformations\Migrated\StretchTransformation.cs" />
+    <Compile Include="Transformations\ResizeCropTransformation.cs" />
     <Compile Include="Transformations\ResizeMinTransformation.cs" />
     <Compile Include="Security\AppSettingsPrivateKeyProvider.cs" />
     <Compile Include="Security\Sha1HashGenerator.cs" />
@@ -82,25 +89,24 @@
     <Compile Include="Utils\WrapResolver.cs" />
     <Compile Include="UniversalImageTransformationParser.cs" />
     <Compile Include="Utils\ConfigUtils.cs" />
-    <Compile Include="Contracts\IImageTransformationBuilder.cs" />
-    <Compile Include="Contracts\IImageTransformationBuilderFactory.cs" />
+    <Compile Include="Contracts\IImageTransformationFactory.cs" />
     <Compile Include="ImageTransform.cs" />
-    <Compile Include="ImageTransformationBuilderFactory.cs" />
     <Compile Include="ImageTransformQuery.cs" />
     <Compile Include="RestImageResizeModule.cs" />
     <Compile Include="Contracts\IOpenWaveRestApiEncoder.cs" />
     <Compile Include="OpenWaveRestApiEncoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ImageTransformationBuilder.cs" />
     <Compile Include="Utils\SmartConvert.cs" />
     <Compile Include="Utils\UriExtentions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="nuget-pack.bat" />
     <None Include="packages.config" />
     <None Include="RestImageResize.nuspec" />
     <Content Include="web.config.transform" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

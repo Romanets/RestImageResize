@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using OpenWaves;
+using OpenWaves.ImageTransformations;
 using OpenWaves.ImageTransformations.Web;
 using RestImageResize.Contracts;
 using RestImageResize.Security;
@@ -36,12 +37,12 @@ namespace RestImageResize
         /// <param name="queryAuthorizer">The image transformation query authorizer.</param>
         public OpenWaveRestApiEncoder(
             IWebImageTransformationService imageTransformService = null,
-            IImageTransformationBuilderFactory imageTransformationBuilderFactory = null,
+            IImageTransformationFactory imageTransformationBuilderFactory = null,
             ImageTransform? defaultImageTransform = null,
             IQueryAuthorizer queryAuthorizer = null)
         {
             ImageTransformationService = imageTransformService ?? OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>();
-            ImageTransformationBuilderFactory = imageTransformationBuilderFactory ?? OpenWaves.ServiceLocator.Resolve<IImageTransformationBuilderFactory>();
+            ImageTransformationFactory = imageTransformationBuilderFactory ?? OpenWaves.ServiceLocator.Resolve<IImageTransformationFactory>();
             DefaultImageTransform = defaultImageTransform ?? Config.DefaultTransform;
             QueryAuthorizer = queryAuthorizer ?? OpenWaves.ServiceLocator.Resolve<IQueryAuthorizer>();
         }
@@ -54,7 +55,7 @@ namespace RestImageResize
         /// <summary>
         /// Gets the image transformation builder factory.
         /// </summary>
-        protected virtual IImageTransformationBuilderFactory ImageTransformationBuilderFactory { get; private set; }
+        protected virtual IImageTransformationFactory ImageTransformationFactory { get; private set; }
 
         /// <summary>
         /// Gets the default image transform.
@@ -105,29 +106,31 @@ namespace RestImageResize
             }
 
             var transformQuery = ImageTransformQuery.FromQueryString(uri.GetQueryString(), DefaultImageTransform);
-
             EnsureAuthorizedQuery(transformQuery);
 
-            var transformBuilder = ImageTransformationBuilderFactory.CreateBuilder();
-            transformBuilder.Width = transformQuery.Width;
-            transformBuilder.Height = transformQuery.Height;
-            transformBuilder.TransformType = transformQuery.Transform;
-            transformBuilder.FocusPoint = transformQuery.FocusPoint;
+            var transformation = ImageTransformationFactory.TryCreate(transformQuery);
 
+            //var transformBuilder = ImageTransformationBuilderFactory.CreateBuilder();
+            //transformBuilder.Width = transformQuery.Width;
+            //transformBuilder.Height = transformQuery.Height;
+            //transformBuilder.TransformType = transformQuery.Transform;
+            //transformBuilder.FocusPoint = transformQuery.FocusPoint;
 
-            Url url = ImageTransformationService.GetTransformedImageUrl(Url.Parse(uri.ToString()), transformBuilder);
+            if (transformation == null)
+                return uri;
+
+            var url = ImageTransformationService.GetTransformedImageUrl(Url.Parse(uri.ToString()), transformation);
             return new Uri(url.ToString(), UriKind.RelativeOrAbsolute);
         }
 
         private void EnsureAuthorizedQuery(ImageTransformQuery query)
         {
+            // note: we can use IImageTransformationUrlValidationRule concept for this. 
             var authorized = QueryAuthorizer.IsAuthorized(query);
 
             if (!authorized)
             {
-                throw new HttpException((int) HttpStatusCode.Forbidden,
-                    string.Format("Forbidden query 'w={0}&h={1}&t={2}&h={3}'",
-                        query.Width, query.Height, Enum.GetName(typeof(ImageTransform), query.Transform).ToLower(), query.Hash));
+                throw new HttpException((int) HttpStatusCode.Forbidden, $"Forbidden query '{query}'");
             }
         }
     }

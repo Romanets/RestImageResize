@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenWaves.ImageTransformations;
 using RestImageResize.Security;
+using RestImageResize.Transformations;
 using RestImageResize.Utils;
+using CentralCropTransformation = RestImageResize.Transformations.CentralCropTransformation;
+using ScaleDownToFillTransformation = RestImageResize.Transformations.ScaleDownToFillTransformation;
+using ScaleDownToFitTransformation = RestImageResize.Transformations.ScaleDownToFitTransformation;
+using ScaleToFillTransformation = RestImageResize.Transformations.ScaleToFillTransformation;
+using ScaleToFitTransformation = RestImageResize.Transformations.ScaleToFitTransformation;
+using StretchTransformation = RestImageResize.Transformations.StretchTransformation;
 
 namespace RestImageResize
 {
@@ -13,7 +20,10 @@ namespace RestImageResize
         {
             var resolver = new WrapResolver(ServiceLocatorUtils.GetCurrentResolver());
 
-            RegisterDefault<IImageTransformationParser>(new UniversalImageTransformationParser(), resolver);
+            var transformationRegistry = GetDefaultTransformationRegistry();
+
+            RegisterDefault<ITransformationRegistry>(transformationRegistry, resolver);
+            RegisterDefault<IImageTransformationParser>(new UniversalImageTransformationParser(transformationRegistry), resolver);
 
             // hash authorization
 
@@ -26,6 +36,20 @@ namespace RestImageResize
             RegisterDefault<IQueryAuthorizer>(privateKeyQueryAuthorizer, resolver);
 
             OpenWaves.ServiceLocator.SetResolver(resolver);
+        }
+
+        private ITransformationRegistry GetDefaultTransformationRegistry()
+        {
+            return new TransformationRegistry()
+                .Add<ScaleToFitTransformation>(ImageTransform.Fit)
+                .Add<ScaleToFillTransformation>(ImageTransform.Fill)
+                .Add<ScaleDownToFitTransformation>(ImageTransform.DownFit)
+                .Add<ScaleDownToFillTransformation>(ImageTransform.DownFill)
+                .Add<CentralCropTransformation>(ImageTransform.Crop)
+                .Add<StretchTransformation>(ImageTransform.Stretch)
+                .Add<ResizeMinTransformation>(ImageTransform.ResizeMin)
+                .Add<DownResizeMinTransformation>(ImageTransform.DownResizeMin)
+                .Add<ResizeCropTransformation>(ImageTransform.ResizeCrop);
         }
 
         private void RegisterDefault<T>(T implementation, WrapResolver resolver) where T : class
