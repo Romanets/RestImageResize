@@ -66,12 +66,12 @@ namespace RestImageResize.Transformations
 
             if (context.Width == 0)
             {
-                context.Width = Height;
+                context.Width = context.Height;
             }
 
             if (context.Height == 0)
             {
-                context.Height = Width;
+                context.Height = context.Width;
             }
         }
 
