@@ -28,6 +28,8 @@ namespace RestImageResize.Transformations
         public virtual IDictionary<string, string> TryDeserialize(string serializedProperties)
         {
             if (serializedProperties == null) throw new ArgumentNullException(nameof(serializedProperties));
+
+            serializedProperties = HttpUtility.UrlDecode(serializedProperties);
             
             var keyValueArray = serializedProperties.Split(new [] { '&' }, StringSplitOptions.RemoveEmptyEntries);
             var result = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
