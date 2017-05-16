@@ -67,6 +67,7 @@
     <Compile Include="CropArea.cs" />
     <Compile Include="FocusPoint.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="Transformations\DownResizeCropTransformation.cs" />
     <Compile Include="Transformations\IImageTransformationPropertiesSerializer.cs" />
     <Compile Include="Transformations\ImageTransformation2.cs" />
     <Compile Include="Transformations\Migrated\CentralCropTransformation.cs" />

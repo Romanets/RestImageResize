@@ -24,8 +24,7 @@ namespace RestImageResize
             var transformationRegistry = GetDefaultTransformationRegistry();
 
             RegisterDefault<ITransformationRegistry>(transformationRegistry, resolver);
-            RegisterDefault<IImageTransformationParser>(new UniversalImageTransformationParser(transformationRegistry), resolver);
-
+            
             // hash authorization
 
             var appSettingsPrivateKeyProvider = new AppSettingsPrivateKeyProvider();
@@ -36,7 +35,9 @@ namespace RestImageResize
             RegisterDefault<IHashGenerator>(sha1HashGenerator, resolver);
             RegisterDefault<IQueryAuthorizer>(privateKeyQueryAuthorizer, resolver);
 
-            resolver.Register(new LogServiceFactory().CreateLogger());
+            var logger = new LogServiceFactory().CreateLogger();
+            resolver.Register(logger);
+            RegisterDefault<IImageTransformationParser>(new UniversalImageTransformationParser(transformationRegistry, logger), resolver);
 
             OpenWaves.ServiceLocator.SetResolver(resolver);
         }
@@ -52,7 +53,9 @@ namespace RestImageResize
                 .Add<StretchTransformation>(ImageTransform.Stretch)
                 .Add<ResizeMinTransformation>(ImageTransform.ResizeMin)
                 .Add<DownResizeMinTransformation>(ImageTransform.DownResizeMin)
-                .Add<ResizeCropTransformation>(ImageTransform.ResizeCrop);
+                .Add<ResizeCropTransformation>(ImageTransform.ResizeCrop)
+                .Add<DownResizeCropTransformation>(ImageTransform.DownResizeCrop)
+                ;
         }
 
         private void RegisterDefault<T>(T implementation, WrapResolver resolver) where T : class

@@ -62,8 +62,6 @@ namespace RestImageResize.Transformations
 
         protected override void Applying(TransformationContext context, IImage image)
         {
-            base.Applying(context, image); 
-
             if (context.Width == 0)
             {
                 context.Width = context.Height;
@@ -119,7 +117,7 @@ namespace RestImageResize.Transformations
             if (image.Width <= context.Width || image.Height <= context.Height)
                 return;
 
-            base.ApplyToImage(image);
+            base.ApplyToImage(context, image);
         }
     }
 }
