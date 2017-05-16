@@ -84,7 +84,11 @@
     <Compile Include="Security\IQueryAuthorizer.cs" />
     <Compile Include="Security\PrivateKey.cs" />
     <Compile Include="Security\PrivateKeyQueryAuthorizer.cs" />
+    <Compile Include="Utils\DebugOutputLoggingService.cs" />
+    <Compile Include="Utils\LoggingConfigurationSection.cs" />
     <Compile Include="Utils\FocusPointUtil.cs" />
+    <Compile Include="Utils\ILogServiceFactory.cs" />
+    <Compile Include="Utils\LogServiceFactory.cs" />
     <Compile Include="Utils\ServiceLocatorUtils.cs" />
     <Compile Include="Utils\WrapResolver.cs" />
     <Compile Include="UniversalImageTransformationParser.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenWaves;
 using OpenWaves.ImageTransformations;
 using RestImageResize.Security;
 using RestImageResize.Transformations;
@@ -34,6 +35,8 @@ namespace RestImageResize
             RegisterDefault<IPrivateKeyProvider>(appSettingsPrivateKeyProvider, resolver);
             RegisterDefault<IHashGenerator>(sha1HashGenerator, resolver);
             RegisterDefault<IQueryAuthorizer>(privateKeyQueryAuthorizer, resolver);
+
+            resolver.Register(new LogServiceFactory().CreateLogger());
 
             OpenWaves.ServiceLocator.SetResolver(resolver);
         }
