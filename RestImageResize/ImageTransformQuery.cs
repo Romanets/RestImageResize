@@ -49,14 +49,14 @@ namespace RestImageResize
         public virtual IDictionary<string, string> ToPropertiesDictionary()
         {
             var result = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
-            result.Add(nameof(Transform), Transform.ToString().ToLowerInvariant());
+            result.Add(nameof(Transform).ToLowerInvariant(), Transform.ToString().ToLowerInvariant());
 
             if (!Hash.IsNullOrWhiteSpace())
                 result.Add("h", Hash);
             if (Width > 0)
-                result.Add(nameof(Width), Width.ToString(CultureInfo.InvariantCulture));
+                result.Add(nameof(Width).ToLowerInvariant(), Width.ToString(CultureInfo.InvariantCulture));
             if (Height > 0)
-                result.Add(nameof(Height), Height.ToString(CultureInfo.InvariantCulture));
+                result.Add(nameof(Height).ToLowerInvariant(), Height.ToString(CultureInfo.InvariantCulture));
             foreach (string key in Parameters)
             {
                 result[key] = Parameters[key];

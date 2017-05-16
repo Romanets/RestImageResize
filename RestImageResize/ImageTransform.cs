@@ -48,6 +48,10 @@
         /// <summary>
         /// The resize crop transformation
         /// </summary>
-        ResizeCrop = 8
+        ResizeCrop = 8,
+        /// <summary>
+        /// 
+        /// </summary>
+        DownResizeCrop = 9
     }
 }

@@ -33,6 +33,9 @@ namespace RestImageResize.Transformations
         public static IImageTransformationPropertiesSerializer PropertiesSerializer =>
             ServiceLocator.Resolve<IImageTransformationPropertiesSerializer>();
 
+        public static ITransformationRegistry TransformationRegistry =>
+            ServiceLocator.Resolve<ITransformationRegistry>();
+
         private readonly int width;
         protected int Width
         {
@@ -49,10 +52,12 @@ namespace RestImageResize.Transformations
         {
             get
             {
-                var name = GetLegacyTransformName(this.GetType());
+                var name = ImageTransform?.ToString().ToLowerInvariant() ?? GetLegacyTransformName(this.GetType());
                 return name;
             }
         }
+
+        public virtual ImageTransform? ImageTransform => TransformationRegistry.TryGetTransformByType(this.GetType());
 
         public static string GetLegacyTransformName(Type type)
         {

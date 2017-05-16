@@ -3,13 +3,13 @@ using OpenWaves.ImageTransformations;
 
 namespace RestImageResize.Transformations
 {
-    public class ScaleDownToFitTransformation : ScaleToFitTransformation
+    public class DownResizeCropTransformation : ResizeCropTransformation
     {
-        public ScaleDownToFitTransformation(int width, int height) : base(width, height)
+        public DownResizeCropTransformation(int width, int height, FocusPoint focusPoint) : base(width, height, focusPoint)
         {
         }
 
-        public ScaleDownToFitTransformation(IDictionary<string, string> properties) : base(properties)
+        public DownResizeCropTransformation(IDictionary<string, string> serializedProperties) : base(serializedProperties)
         {
         }
 
@@ -17,13 +17,12 @@ namespace RestImageResize.Transformations
         {
             if (image.Width <= context.Width && image.Height <= context.Height)
                 return;
-
             base.ApplyToImage(context, image);
         }
 
         protected override IImageTransformation Scale(int width, int height)
         {
-            return new ScaleDownToFitTransformation(width, height);
+            return new DownResizeCropTransformation(width, height, FocusPoint);
         }
     }
 }
