@@ -71,6 +71,24 @@ C# clients could use `RestImageResize.Security.Sha1HashGenerator` from `RestImag
     var hashGenerator = new RestImageResize.Security.Sha1HashGenerator();
     var hash = hashGenerator.ComputeHash("123456789ABCDEF", 200, 100, ImageTransform.DownFit);
 
+## Log service configuration
+The feature added in v1.1.5 allows to configure log file for RestImageResize by adding the following configuration section:
+
+```
+  <configSections>
+    <section name="restImageResize.logging" type="RestImageResize.Utils.LoggingConfigurationSection, RestImageResize" />
+  </configSections>
+  
+  <restImageResize.logging 
+    logSeverityThreshold="Debug" 
+    logServiceType="OpenWaves.FileLoggingService, OpenWaves"
+    logDirectory="~/App_Data/logs/" />
+
+```
+Default configuration is:
+```
+  <restImageResize.logging logSeverityThreshold="Info"  logServiceType="RestImageResize.Utils.DebugOutputLoggingService, RestImageResize"/>
+```
 [1]: http://nuget.org/
 [2]: http://nuget.org/packages/RestImageResize/
 [3]: http://nuget.org/packages/RestImageResize.EpiServer/
