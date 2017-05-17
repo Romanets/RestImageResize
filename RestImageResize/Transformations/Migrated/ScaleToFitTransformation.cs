@@ -16,14 +16,14 @@ namespace RestImageResize.Transformations
 
         protected override void Applying(TransformationContext context, IImage image)
         {
-            if (context.Width == 0)
+            if (context.TargetWidth == 0)
             {
-                context.Width = int.MaxValue;
+                context.TargetWidth = int.MaxValue;
             }
 
-            if (context.Height == 0)
+            if (context.TargetHeight == 0)
             {
-                context.Height = int.MaxValue;
+                context.TargetHeight = int.MaxValue;
             }
         }
 
@@ -31,15 +31,15 @@ namespace RestImageResize.Transformations
         {
             int width;
             int height;
-            if ((double)image.Width / image.Height < (double)context.Width / context.Height)
+            if ((double)image.Width / image.Height < (double)context.TargetWidth / context.TargetHeight)
             {
-                width = (int)(Math.Round((double)context.Height / image.Height * image.Width));
-                height = context.Height;
+                width = (int)(Math.Round((double)context.TargetHeight / image.Height * image.Width));
+                height = context.TargetHeight;
             }
             else
             {
-                width = context.Width;
-                height = (int)(Math.Round((double)context.Width / image.Width * image.Height));
+                width = context.TargetWidth;
+                height = (int)(Math.Round((double)context.TargetWidth / image.Width * image.Height));
             }
 
             image.Scale(width, height);

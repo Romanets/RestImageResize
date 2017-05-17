@@ -18,21 +18,21 @@ namespace RestImageResize.Transformations
         {
             int width;
             int height;
-            if ((double)image.Width / image.Height < (double)context.Width / context.Height)
+            if ((double)image.Width / image.Height < (double)context.TargetWidth / context.TargetHeight)
             {
-                width = context.Width;
-                height = (int)(Math.Round((double)context.Width / image.Width * image.Height));
+                width = context.TargetWidth;
+                height = (int)(Math.Round((double)context.TargetWidth / image.Width * image.Height));
             }
             else
             {
-                width = (int)(Math.Round((double)context.Height / image.Height * image.Width));
-                height = context.Height;
+                width = (int)(Math.Round((double)context.TargetHeight / image.Height * image.Width));
+                height = context.TargetHeight;
             }
 
             image.Scale(width, height);
 
-            if (width > context.Width || height > context.Height)
-                image.Crop((int)((width - context.Width) / 2.0), (int)((height - context.Height) / 2.0), context.Width, context.Height);
+            if (width > context.TargetWidth || height > context.TargetHeight)
+                image.Crop((int)((width - context.TargetWidth) / 2.0), (int)((height - context.TargetHeight) / 2.0), context.TargetWidth, context.TargetHeight);
         }
 
         protected override IImageTransformation Scale(int width, int height)

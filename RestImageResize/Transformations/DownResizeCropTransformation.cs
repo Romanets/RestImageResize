@@ -15,7 +15,7 @@ namespace RestImageResize.Transformations
 
         public override void ApplyToImage(TransformationContext context, IImage image)
         {
-            if (image.Width <= context.Width && image.Height <= context.Height)
+            if (image.Width <= context.TargetWidth && image.Height <= context.TargetHeight)
                 return;
             base.ApplyToImage(context, image);
         }

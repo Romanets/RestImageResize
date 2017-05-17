@@ -15,7 +15,7 @@ namespace RestImageResize.Transformations
 
         public override void ApplyToImage(TransformationContext context, IImage image)
         {
-            image.Scale(context.Width, context.Height);
+            image.Scale(context.TargetWidth, context.TargetHeight);
         }
 
         protected override IImageTransformation Scale(int width, int height)

@@ -12,8 +12,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      - v1.1.6 -  added log service configuration,
-                  ResizeCrop transformation implemented (similar to resizecrop in http://imageprocessor.org/imageprocessor-web/imageprocessingmodule/resize/)
+      - v1.1.7 -  added log service configuration,
+                  ResizeCrop/DownResizeCrop transformation implemented (similar to resizecrop in http://imageprocessor.org/imageprocessor-web/imageprocessingmodule/resize/)
       - v1.1.2 -  ResizeMin/DownResizeMin transformations implemented (similar to resizemin in http://imageprocessor.org/imageprocessor-web/imageprocessingmodule/resize/)
       - v1.1.1 -  Mit License added.
     </releaseNotes>

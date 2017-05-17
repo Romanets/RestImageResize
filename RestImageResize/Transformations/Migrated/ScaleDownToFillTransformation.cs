@@ -16,15 +16,15 @@ namespace RestImageResize.Transformations
 
         public override void ApplyToImage(TransformationContext context, IImage image)
         {
-            var widthRatio = (double)image.Width / context.Width;
-            var heightRatio = (double)image.Height / context.Height;
+            var widthRatio = (double)image.Width / context.TargetWidth;
+            var heightRatio = (double)image.Height / context.TargetHeight;
 
             if (Math.Abs(widthRatio - heightRatio) > 0)
             {
                 var ratio = Math.Min(widthRatio, heightRatio);
 
-                var desiredWidth = ratio * context.Width;
-                var desiredHeight = ratio * context.Height;
+                var desiredWidth = ratio * context.TargetWidth;
+                var desiredHeight = ratio * context.TargetHeight;
 
                 var left = (image.Width - desiredWidth) / 2;
                 var top = (image.Height - desiredHeight) / 2;
@@ -33,9 +33,9 @@ namespace RestImageResize.Transformations
                     Convert.ToInt32(desiredHeight));
             }
 
-            if (image.Width > context.Width || image.Height > context.Height)
+            if (image.Width > context.TargetWidth || image.Height > context.TargetHeight)
             {
-                image.Scale(context.Width, context.Height);
+                image.Scale(context.TargetWidth, context.TargetHeight);
             }
         }
 

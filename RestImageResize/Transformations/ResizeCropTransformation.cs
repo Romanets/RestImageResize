@@ -43,36 +43,36 @@ namespace RestImageResize.Transformations
         {
             int width;
             int height;
-            if ((double)image.Width / (double)image.Height < (double)context.Width / (double)context.Height)
+            if ((double)image.Width / (double)image.Height < (double)context.TargetWidth / (double)context.TargetHeight)
             {
-                width = context.Width;
-                height = (int)Math.Round((double)context.Width / (double)image.Width * (double)image.Height);
+                width = context.TargetWidth;
+                height = (int)Math.Round((double)context.TargetWidth / (double)image.Width * (double)image.Height);
             }
             else
             {
-                width = (int)Math.Round((double)context.Height / (double)image.Height * (double)image.Width);
-                height = context.Height;
+                width = (int)Math.Round((double)context.TargetHeight / (double)image.Height * (double)image.Width);
+                height = context.TargetHeight;
             }
             image.Scale(width, height);
-            if (width <= context.Width && height <= context.Height)
+            if (width <= context.TargetWidth && height <= context.TargetHeight)
                 return;
 
-            var cropArea = CreateCropArea(image, width, height);
+            var cropArea = CreateCropArea(context, image, width, height);
 
             image.Crop(cropArea.CropPoint.X, cropArea.CropPoint.Y, cropArea.Width, cropArea.Height);
         }
 
-        private CropArea CreateCropArea(IImage image, int width, int height)
+        private CropArea CreateCropArea(TransformationContext context, IImage image, int width, int height)
         {
             var cropArea = new CropArea()
             {
                 CropPoint = new Coordinates()
                 {
-                    X = (int)((double)(width - this.Width) / 2.0),
-                    Y = (int)((double)(height - this.Height) / 2.0)
+                    X = (int)((double)(width - context.TargetWidth) / 2.0),
+                    Y = (int)((double)(height - context.TargetHeight) / 2.0)
                 },
-                Width = this.Width,
-                Height = this.Height
+                Width = context.TargetWidth,
+                Height = context.TargetHeight
             };
 
             if (FocusPoint != null)

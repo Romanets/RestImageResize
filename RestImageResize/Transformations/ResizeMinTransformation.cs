@@ -45,31 +45,31 @@ namespace RestImageResize.Transformations
             if (image.Width == 0 || image.Height == 0)
                 return;
             
-            var scaleX = (double) image.Width / (double) context.Width;
-            var scaleY = (double) image.Height / (double) context.Height;
+            var scaleX = (double) image.Width / (double) context.TargetWidth;
+            var scaleY = (double) image.Height / (double) context.TargetHeight;
 
             if (scaleX <= scaleY)
             {
                 var newHeight = (int) Math.Round((double) image.Height / scaleX);
-                image.Scale(context.Width, newHeight);
+                image.Scale(context.TargetWidth, newHeight);
             }
             else
             {
                 var newWidth = (int) Math.Round((double) image.Width / scaleY);
-                image.Scale(newWidth, context.Height);
+                image.Scale(newWidth, context.TargetHeight);
             }
         }
 
         protected override void Applying(TransformationContext context, IImage image)
         {
-            if (context.Width == 0)
+            if (context.TargetWidth == 0)
             {
-                context.Width = context.Height;
+                context.TargetWidth = context.TargetHeight;
             }
 
-            if (context.Height == 0)
+            if (context.TargetHeight == 0)
             {
-                context.Height = context.Width;
+                context.TargetHeight = context.TargetWidth;
             }
         }
 
@@ -114,7 +114,7 @@ namespace RestImageResize.Transformations
         /// <param name="image"></param>
         public override void ApplyToImage(TransformationContext context, IImage image)
         {
-            if (image.Width <= context.Width || image.Height <= context.Height)
+            if (image.Width <= context.TargetWidth || image.Height <= context.TargetHeight)
                 return;
 
             base.ApplyToImage(context, image);

@@ -12,8 +12,8 @@ namespace RestImageResize.Transformations
 {
     public class TransformationContext
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public int TargetWidth { get; set; }
+        public int TargetHeight { get; set; }
     }
 
     public abstract class ImageTransformation2 : IImageTransformation, IResponsiveImageTransformation
@@ -112,14 +112,14 @@ namespace RestImageResize.Transformations
         /// <param name="image"></param>
         protected virtual void Applying(TransformationContext context, IImage image)
         {
-            if (context.Width == 0)
+            if (context.TargetWidth == 0)
             {
-                context.Width = image.Width;
+                context.TargetWidth = image.Width;
             }
 
-            if (context.Height == 0)
+            if (context.TargetHeight == 0)
             {
-                context.Height = image.Height;
+                context.TargetHeight = image.Height;
             }
         }
 
@@ -127,8 +127,8 @@ namespace RestImageResize.Transformations
         {
             var result = new TransformationContext
             {
-                Width = width,
-                Height = height
+                TargetWidth = width,
+                TargetHeight = height
             };
 
             return result;

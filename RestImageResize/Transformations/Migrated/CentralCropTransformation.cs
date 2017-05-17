@@ -16,14 +16,14 @@ namespace RestImageResize.Transformations
 
         public override void ApplyToImage(TransformationContext context, IImage image)
         {
-            if (image.Width <= context.Width && image.Height <= context.Height)
+            if (image.Width <= context.TargetWidth && image.Height <= context.TargetHeight)
                 return;
 
             image.Crop(
-                Math.Max(0, image.Width - context.Width) / 2,
-                Math.Max(0, image.Height - context.Height) / 2,
-                Math.Min(image.Width, context.Width),
-                Math.Min(image.Height, context.Height));
+                Math.Max(0, image.Width - context.TargetWidth) / 2,
+                Math.Max(0, image.Height - context.TargetHeight) / 2,
+                Math.Min(image.Width, context.TargetWidth),
+                Math.Min(image.Height, context.TargetHeight));
         }
 
         protected override IImageTransformation Scale(int width, int height)
