@@ -69,6 +69,8 @@
     <Compile Include="Initializer.cs" />
     <Compile Include="Transformations\DownResizeCropTransformation.cs" />
     <Compile Include="Transformations\IImageTransformationPropertiesSerializer.cs" />
+    <Compile Include="IRestImageResizeService.cs" />
+    <Compile Include="RestImageResizeService.cs" />
     <Compile Include="Transformations\ImageTransformation2.cs" />
     <Compile Include="Transformations\Migrated\CentralCropTransformation.cs" />
     <Compile Include="Transformations\Migrated\ScaleDownToFillTransformation.cs" />
