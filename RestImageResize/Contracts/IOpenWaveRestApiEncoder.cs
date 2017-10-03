@@ -26,5 +26,12 @@ namespace RestImageResize.Contracts
         /// Transformed URI instance.
         /// </returns>
         Uri EncodeUri(Uri uri);
+
+        /// <summary>
+        /// Builds path to transformed image(cached) according te image transformation URI.
+        /// </summary>
+        /// <param name="uri">Image transformation URI</param>
+        /// <returns>Path where transformed image should be placed after transformation.</returns>
+        string BuldPathToTransformedImage(Uri uri);
     }
 }

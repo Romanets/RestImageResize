@@ -9,4 +9,4 @@
 
 // Product version
 [assembly: AssemblyVersion("1.1.8")]
-[assembly: AssemblyInformationalVersion("1.1.8")]
+[assembly: AssemblyInformationalVersion("1.1.9")]

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Hosting;
 using OpenWaves;
 using OpenWaves.ImageTransformations;
+using OpenWaves.ImageTransformations.Web;
 using RestImageResize.Security;
 using RestImageResize.Transformations;
 using RestImageResize.Utils;
@@ -38,6 +40,10 @@ namespace RestImageResize
             var logger = new LogServiceFactory().CreateLogger();
             resolver.Register(logger);
             RegisterDefault<IImageTransformationParser>(new UniversalImageTransformationParser(transformationRegistry, logger), resolver);
+
+            // register default OpenWaveComponents which is used in parameterless constructor of OpenWaves.ImageTransformations.Web
+            RegisterDefault<IVirtualFileProvider>(new VirtualPathFileProvider(HostingEnvironment.VirtualPathProvider), resolver);
+            RegisterDefault<IFileStore>(new MapPathBasedFileStore(UrlPath.Parse("~/Images/Scaled")), resolver);
 
             OpenWaves.ServiceLocator.SetResolver(resolver);
         }

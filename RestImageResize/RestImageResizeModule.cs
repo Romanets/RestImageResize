@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Web;
+using OpenWaves.ImageTransformations.Web;
 using RestImageResize.Contracts;
 
 namespace RestImageResize
@@ -66,6 +69,12 @@ namespace RestImageResize
                 Uri resizedImageUri;
                 if (resizeService.TryResizeImage(httpContext.Request.Url, out resizedImageUri))
                 {
+                    /*
+                    var transformedImagePath = resizeService.BuildTransformedImageFileName(httpContext.Request.Url);
+                    var fileStore = OpenWaves.ServiceLocator.Resolve<IFileStore>();
+                    Debug.WriteLine("Image transformed and cached to {0}, check file exists is {1}", transformedImagePath, fileStore.FileExists(transformedImagePath));
+                    */
+
                     var newUrl = resizedImageUri.ToString();
                     httpContext.RewritePath(newUrl);
                     UpdateRequestRawUrl(httpContext.Request, newUrl);

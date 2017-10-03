@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Web;
-using OpenWaves;
+﻿using OpenWaves;
 using OpenWaves.ImageTransformations;
 using OpenWaves.ImageTransformations.Web;
 using RestImageResize.Contracts;
 using RestImageResize.Security;
 using RestImageResize.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Web;
 
 namespace RestImageResize
 {
@@ -24,7 +25,7 @@ namespace RestImageResize
         /// Initializes a new instance of the <see cref="OpenWaveRestApiEncoder"/> class.
         /// </summary>
         public OpenWaveRestApiEncoder() // needed to default implementation if interface resolve.
-            : this(null, null, null, null)
+            : this(null, null, null, null, null)
         {
         }
 
@@ -39,12 +40,14 @@ namespace RestImageResize
             IWebImageTransformationService imageTransformService = null,
             IImageTransformationFactory imageTransformationBuilderFactory = null,
             ImageTransform? defaultImageTransform = null,
-            IQueryAuthorizer queryAuthorizer = null)
+            IQueryAuthorizer queryAuthorizer = null,
+            IVirtualFileProvider virtualFileProvider = null)
         {
             ImageTransformationService = imageTransformService ?? OpenWaves.ServiceLocator.Resolve<IWebImageTransformationService>();
             ImageTransformationFactory = imageTransformationBuilderFactory ?? OpenWaves.ServiceLocator.Resolve<IImageTransformationFactory>();
             DefaultImageTransform = defaultImageTransform ?? Config.DefaultTransform;
             QueryAuthorizer = queryAuthorizer ?? OpenWaves.ServiceLocator.Resolve<IQueryAuthorizer>();
+            ImageFileProvider = virtualFileProvider ?? OpenWaves.ServiceLocator.Resolve<IVirtualFileProvider>();
         }
 
         /// <summary>
@@ -66,6 +69,12 @@ namespace RestImageResize
         /// Gets the query authorizer.
         /// </summary>
         protected virtual IQueryAuthorizer QueryAuthorizer { get; private set; }
+
+
+        /// <summary>
+        /// Gets Image file provider.
+        /// </summary>
+        protected virtual IVirtualFileProvider ImageFileProvider { get; private set; }
 
         /// <summary>
         /// Determines whether URL is supported to encode (contains image resizing request).
@@ -123,6 +132,32 @@ namespace RestImageResize
             return new Uri(url.ToString(), UriKind.RelativeOrAbsolute);
         }
 
+        /// <summary>
+        /// Builds path to transformed image(cached) according te image transformation URI.
+        /// </summary>
+        /// <param name="uri">Image transformation URI</param>
+        /// <returns>Path where transformed image should be placed after transformation.</returns>
+        public virtual string BuldPathToTransformedImage(Uri uri)
+        {
+            if (IsSupportedUri(uri))
+            {
+                var transformQuery = ImageTransformQuery.FromQueryString(uri.GetQueryString(), DefaultImageTransform);
+                var transformation = ImageTransformationFactory.TryCreate(transformQuery);
+                if (transformation != null)
+                {
+                    var imageFile = ImageFileProvider.GetFile(Url.Parse(uri.ToString()));
+
+                    if (imageFile != null)
+                    {
+                        string transformedImagePath = GetTransformedImagePath(imageFile, transformation, imageFile.Url.Path.GetFileExtension());
+                        return transformedImagePath;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         private void EnsureAuthorizedQuery(ImageTransformQuery query)
         {
             // note: we can use IImageTransformationUrlValidationRule concept for this. 
@@ -130,8 +165,20 @@ namespace RestImageResize
 
             if (!authorized)
             {
-                throw new HttpException((int) HttpStatusCode.Forbidden, $"Forbidden query '{query}'");
+                throw new HttpException((int)HttpStatusCode.Forbidden, $"Forbidden query '{query}'");
             }
+        }
+
+        private static string GetTransformedImagePath(IVirtualFile imageFile, IImageTransformation transformation, string extension) // Copied from OpenWaves.ImageTransformations.Web.WebImageTransformationService.GetTransformedImagePath
+        {
+            var sb = new StringBuilder();
+            var name = sb
+                .Append(imageFile.Url)
+                .Append(imageFile.Hash ?? String.Empty)
+                .Append(transformation)
+                .ToString();
+
+            return MD5Hash.Compute(name) + extension;
         }
     }
 }
