@@ -27,7 +27,7 @@ namespace RestImageResize
             {
                 lock (Lock)
                 {
-                    if (!_resizerInitialized)
+                   if (!_resizerInitialized)
                     {
                         new Initializer().InitializeResizer();
                         _resizerInitialized = true;

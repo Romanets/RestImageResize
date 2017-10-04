@@ -50,9 +50,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\OpenWaves.Web.1.0.85.245\lib\net40\OpenWaves.Web.dll</HintPath>
     </Reference>
+    <Reference Include="Magick.NET-Q8-AnyCPU, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q8-AnyCPU.7.0.7.300\lib\net40\Magick.NET-Q8-AnyCPU.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +72,7 @@
     <Compile Include="CropArea.cs" />
     <Compile Include="FocusPoint.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="MagickNetImageTransforationService.cs" />
     <Compile Include="Transformations\DownResizeCropTransformation.cs" />
     <Compile Include="Transformations\IImageTransformationPropertiesSerializer.cs" />
     <Compile Include="IRestImageResizeService.cs" />

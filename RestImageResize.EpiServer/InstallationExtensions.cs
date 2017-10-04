@@ -19,21 +19,12 @@ namespace RestImageResize.EPiServer
             var webImageTransformService = new WebImageTransformationService(
                 virtualFileProvider,
                 new ConcurrentFileStore(fileStore),
-                new EPiImageTransformationService(new ImageService()));
-
-            var validationRules = new IImageTransformationUrlValidationRule[]
-            {
-                new ForEditorsImageTransformationUrlValidationRule(),
-                new HmacImageTransformationUrlValidationRule()
-            };
-
-            var moduleImplementation = new WebImageTransformationModuleImplementation(webImageTransformService, validationRules);
+                new MagickNetImageTransforationService());
 
             resolver
                 .Register<IFileStore>(fileStore)
                 .Register<IVirtualFileProvider>(virtualFileProvider)
-                .Register<IWebImageTransformationService>(moduleImplementation)
-                .Register<IWebImageTransformationModuleImplementation>(moduleImplementation);
+                .Register<IWebImageTransformationService>(webImageTransformService);
 
             return resolver;
         }

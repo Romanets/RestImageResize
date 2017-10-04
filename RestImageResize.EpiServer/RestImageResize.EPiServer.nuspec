@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>$id$</id>
-    <version>$version$-beta6</version>
+    <version>$version$-beta8</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <projectUrl>https://github.com/Romanets/RestImageResize</projectUrl>
@@ -11,16 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-- Mit License added.
+      - v1.1.9 -  Fixed issues
     </releaseNotes>
     <copyright>Copyright © Creuna 2015</copyright>
     <tags>Creuna Image Resize Transform OpenWaves ASP.NET EPiServer</tags>
-    <dependencies>
-      <dependency id="EPiServer.CMS.Core" version="7.0.6" />
-      <dependency id="RestImageResize" version="1.0.3" />
-      <dependency id="OpenWaves" version="1.0.85.259" />
-      <dependency id="OpenWaves.ImageTransformations.EPiServer" version="1.0.85.251" />
-    </dependencies>
   </metadata>
   <files>
     <file src="readme.txt" target="" />
