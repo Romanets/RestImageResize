@@ -10,110 +10,115 @@
     }
 </style>
 @*<img src="~/Content/Images/small1.jpg"/>
-<img src="~/Content/Images/bigcat.JPG"/>
+    <img src="~/Content/Images/bigcat.JPG"/>
 
-<img src="~/Content/Images/small1.jpg?width=100&transform=fill" />
-<img src="~/Content/Images/small1.jpg?width=100&transform=fit" />
-<img src="~/Content/Images/small1.jpg?width=100&transform=crop" />
-<img src="~/Content/Images/small1.jpg?width=100&transform=stretch"/>
-<img src="~/Content/Images/bigcat.jpg?width=100&transform=resizemin" />
-<img src="~/Content/Images/bigcat.jpg?width=100&height=200&transform=resizemin" />
+    <img src="~/Content/Images/small1.jpg?width=100&transform=fill" />
+    <img src="~/Content/Images/small1.jpg?width=100&transform=fit" />
+    <img src="~/Content/Images/small1.jpg?width=100&transform=crop" />
+    <img src="~/Content/Images/small1.jpg?width=100&transform=stretch"/>
+    <img src="~/Content/Images/bigcat.jpg?width=100&transform=resizemin" />
+    <img src="~/Content/Images/bigcat.jpg?width=100&height=200&transform=resizemin" />
 
-<h3>Fill, Fit, Crop, Stretch, ResizeMin with width 600</h3>
-<img src="~/Content/Images/small1.jpg?width=600&transform=fill" />
-<img src="~/Content/Images/small1.jpg?width=600&transform=fit" />
-<img src="~/Content/Images/small1.jpg?width=600&transform=crop" />
-<img src="~/Content/Images/small1.jpg?width=600&transform=stretch"/>
-<img src="~/Content/Images/bigcat.JPG?width=600&transform=resizemin" />
-<img src="~/Content/Images/bigcat.JPG?width=600&height=300&transform=resizemin" />
+    <h3>Fill, Fit, Crop, Stretch, ResizeMin with width 600</h3>
+    <img src="~/Content/Images/small1.jpg?width=600&transform=fill" />
+    <img src="~/Content/Images/small1.jpg?width=600&transform=fit" />
+    <img src="~/Content/Images/small1.jpg?width=600&transform=crop" />
+    <img src="~/Content/Images/small1.jpg?width=600&transform=stretch"/>
+    <img src="~/Content/Images/bigcat.JPG?width=600&transform=resizemin" />
+    <img src="~/Content/Images/bigcat.JPG?width=600&height=300&transform=resizemin" />
 
-<h3>Fill and Fit with custom image center (focus point) and 600x200 size</h3>
-<img src="~/Content/Images/bigcat.JPG?transform=resizecrop&width=600&height=200&center=0.5,1" />
-<img src="~/Content/Images/bigcat.JPG?transform=resizecrop&width=600&height=200&center=0.5,0" />
+    <h3>Fill and Fit with custom image center (focus point) and 600x200 size</h3>
+    <img src="~/Content/Images/bigcat.JPG?transform=resizecrop&width=600&height=200&center=0.5,1" />
+    <img src="~/Content/Images/bigcat.JPG?transform=resizecrop&width=600&height=200&center=0.5,0" />
 
 
-<img src="~/Content/Images/test-focus-1.jpg?transform=resizecrop&width=600&height=200&center=0.569290459156036,0.196276187896729" />
-<img src="~/Content/Images/test-focus-1.jpg?transform=resizecrop&width=300&height=300&center=0.569290459156036,0.196276187896729" />*@
+    <img src="~/Content/Images/test-focus-1.jpg?transform=resizecrop&width=600&height=200&center=0.569290459156036,0.196276187896729" />
+    <img src="~/Content/Images/test-focus-1.jpg?transform=resizecrop&width=300&height=300&center=0.569290459156036,0.196276187896729" />*@
 
 <table>
     <caption>Target width=100px, height=200px or empty</caption>
     <thead>
-    <tr>
-        <th>Transform</th>
-        <th>Image</th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>Transform</th>
+            <th>Image</th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>Fit</td>
-        <td><img src="~/Content/Images/small1.jpg?width=100&transform=fit"/></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Fill</td>
-        <td><img src="~/Content/Images/small1.jpg?width=100&transform=fill"/></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>DownFit</td>
-        <td><img src="~/Content/Images/small1.jpg?width=100&transform=downfit"/></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>DownFill</td>
-        <td><img src="~/Content/Images/small1.jpg?width=100&transform=downfill"/></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Crop</td>
-        <td><img src="~/Content/Images/bigcat.jpg?width=100&height=200&transform=crop"/></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Stretch</td>
-        <td><img src="~/Content/Images/small1.jpg?width=100&transform=stretch"/></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>ResizeMin</td>
-        <td><img src="~/Content/Images/bigcat.JPG?width=100&height=200&transform=resizemin"/></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>DownResizeMin</td>
-        <td><img src="~/Content/Images/bigcat.JPG?width=100&transform=downresizemin"/></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>ResizeCrop / DownResizeCrop</td>
-        <td>
-            <img src="~/Content/Images/bigcat.jpg?width=100&height=200&center=0,0&transform=resizecrop"/>
-            <img src="~/Content/Images/bigcat.jpg?width=100&height=200&center=0.5,1&transform=downresizecrop"/>
-            <img src="~/Content/Images/bigcat.jpg?width=100&height=200&center=1,1&transform=downresizecrop"/>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>ResizeCrop</td>
-        <td><img src="~/Content/Images/small1.jpg?height=200&center=0,0&transform=resizecrop"/></td>
-        <td>no height</td>
-    </tr>
+        <tr>
+            <td>Fit</td>
+            <td><img src="~/Content/Images/small1.jpg?width=100&transform=fit" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Fill</td>
+            <td><img src="~/Content/Images/small1.jpg?width=100&transform=fill" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>DownFit</td>
+            <td><img src="~/Content/Images/small1.jpg?width=100&transform=downfit" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>DownFill</td>
+            <td><img src="~/Content/Images/small1.jpg?width=100&transform=downfill" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Crop</td>
+            <td><img src="~/Content/Images/bigcat.jpg?width=100&height=200&transform=crop" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Stretch</td>
+            <td><img src="~/Content/Images/small1.jpg?width=100&transform=stretch" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ResizeMin</td>
+            <td><img src="~/Content/Images/bigcat.JPG?width=100&height=200&transform=resizemin" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>DownResizeMin</td>
+            <td><img src="~/Content/Images/bigcat.JPG?width=100&transform=downresizemin" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ResizeCrop / DownResizeCrop</td>
+            <td>
+                <img src="~/Content/Images/bigcat.jpg?width=100&height=200&center=0,0&transform=resizecrop" />
+                <img src="~/Content/Images/bigcat.jpg?width=100&height=200&center=0.5,1&transform=downresizecrop" />
+                <img src="~/Content/Images/bigcat.jpg?width=100&height=200&center=1,1&transform=downresizecrop" />
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ResizeCrop</td>
+            <td><img src="~/Content/Images/small1.jpg?height=200&center=0,0&transform=resizecrop" /></td>
+            <td>no height</td>
+        </tr>
+        <tr>
+            <td>Test Big Image</td>
+            <td><img src="~/Content/Images/big-image.jpg?height=550&width=550" /></td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
 
 @*<h3>Fit with with 600</h3>
-<img src="~/Content/Images/bigcat.JPG?width=600&transform=fit" />
-<hr/>*@
+    <img src="~/Content/Images/bigcat.JPG?width=600&transform=fit" />
+    <hr/>*@
 @*<img src="~/Content/Images/bigcat.jpg?width=600&transform=fill" />*@
 @*<hr/>
-<img src="~/Content/Images/bigcat.JPG?width=100&transform=fit" />
-<hr/>
-<h3>Fill with with 200</h3>
-<img src="~/Content/Images/bigcat.jpg?width=200&transform=fill" />
-<hr/>
-<img src="~/Content/Images/bigcat.jpg?width=100&transform=crop" />
-<hr/>
-<img src="~/Content/Images/bigcat.jpg?width=100&transform=stretch" />
-<hr/>*@
+    <img src="~/Content/Images/bigcat.JPG?width=100&transform=fit" />
+    <hr/>
+    <h3>Fill with with 200</h3>
+    <img src="~/Content/Images/bigcat.jpg?width=200&transform=fill" />
+    <hr/>
+    <img src="~/Content/Images/bigcat.jpg?width=100&transform=crop" />
+    <hr/>
+    <img src="~/Content/Images/bigcat.jpg?width=100&transform=stretch" />
+    <hr/>*@
