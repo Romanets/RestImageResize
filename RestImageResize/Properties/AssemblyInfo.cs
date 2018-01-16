@@ -8,5 +8,5 @@
 [assembly: AssemblyCopyright("Copyright © Creuna 2015 - 2017")]
 
 // Product version
-[assembly: AssemblyVersion("1.1.8")]
-[assembly: AssemblyInformationalVersion("1.1.9")]
+[assembly: AssemblyVersion("2.0.0")]
+[assembly: AssemblyInformationalVersion("2.0.0")]

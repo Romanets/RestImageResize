@@ -31,11 +31,10 @@ namespace RestImageResize.WebTest
 
         public static BasicResolver RegisterRestImageResize(BasicResolver resolver)
         {
-
             var webImageTransformService = new WebImageTransformationService(
                 new VirtualPathFileProvider(HostingEnvironment.VirtualPathProvider),
                 new ConcurrentFileStore(new MapPathBasedFileStore(UrlPath.Parse("~/Images/Scaled"))),
-                new MagickNetImageTransforationService());
+                new MagickNetImageTransformationService());
 
             resolver.Register<IWebImageTransformationService>(webImageTransformService);
 

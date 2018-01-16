@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebPackageTest", "RestImageResize.WebPackageTest\RestImageResize.WebPackageTest.csproj", "{F345787E-4760-4B88-83DF-369137C3F07E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize", "RestImageResize\RestImageResize.csproj", "{61C67F04-6B5E-4585-BC89-67C43AB47B2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebTest", "RestImageResize.WebTest\RestImageResize.WebTest.csproj", "{4C1F4E31-4158-484E-B104-A4D9F6E3B231}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiTest", "RestImageResize.WebEPiTest\RestImageResize.WebEPiTest.csproj", "{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiPackageTest", "RestImageResize.WebEPiPackageTest\RestImageResize.WebEPiPackageTest.csproj", "{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}"
 EndProject
@@ -24,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.EPiServer.Test", "RestImageResize.EPiServer.Test\RestImageResize.EPiServer.Test.csproj", "{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +43,6 @@ Global
 		{4C1F4E31-4158-484E-B104-A4D9F6E3B231}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C1F4E31-4158-484E-B104-A4D9F6E3B231}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C1F4E31-4158-484E-B104-A4D9F6E3B231}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,6 +51,10 @@ Global
 		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,7 +62,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F345787E-4760-4B88-83DF-369137C3F07E} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
 		{4C1F4E31-4158-484E-B104-A4D9F6E3B231} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
-		{3D79ADE5-DADB-47D2-933D-E98F9773AFAD} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
 		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EE02DE9-5622-4E0A-A554-66A26262C05D}
 	EndGlobalSection
 EndGlobal
