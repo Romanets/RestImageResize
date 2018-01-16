@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Web;
+using OpenWaves.ImageTransformations.Web;
 using RestImageResize.Contracts;
 
 namespace RestImageResize
@@ -15,9 +18,6 @@ namespace RestImageResize
     /// </remarks>
     public class RestImageResizeModule : IHttpModule
     {
-        private static volatile bool _resizerInitialized = false;
-        private static object _lock = new object();
-
         /// <summary>
         /// Initializes a module and prepares it to handle requests.
         /// </summary>
@@ -43,6 +43,7 @@ namespace RestImageResize
         private static void UpdateRequestRawUrl(HttpRequest request, string url)
         {
             var rawUrlProperty = request.GetType().GetProperty("RawUrl");
+            // ReSharper disable once PossibleNullReferenceException
             rawUrlProperty.SetValue(request, url, null);
         }
 
@@ -55,42 +56,28 @@ namespace RestImageResize
         {
             HttpApplication application = (HttpApplication)sender;
 
-            if (application == null || application.Context == null)
+            if (application?.Context == null)
             {
                 return;
             }
 
-            InitializeResizer();
-
             var httpContext = application.Context;
 
-            var urlEncoder = OpenWaves.ServiceLocator.Resolve<IOpenWaveRestApiEncoder>();
-            if (urlEncoder != null)
+            var resizeService = OpenWaves.ServiceLocator.Resolve<IRestImageResizeService>();
+            if (resizeService != null)
             {
-                if (!string.IsNullOrEmpty(httpContext.Request.Url.PathAndQuery))
+                Uri resizedImageUri;
+                if (resizeService.TryResizeImage(httpContext.Request.Url, out resizedImageUri))
                 {
-                    var uri = new Uri(httpContext.Request.Url.PathAndQuery, UriKind.Relative);
-                    if (urlEncoder.IsSupportedUri(uri))
-                    {
-                        string encodedUrl = urlEncoder.EncodeUri(uri).ToString();
-                        httpContext.RewritePath(encodedUrl);
-                        UpdateRequestRawUrl(httpContext.Request, encodedUrl);
-                    }
-                }
-            }
-        }
+                    /*
+                    var transformedImagePath = resizeService.BuildTransformedImageFileName(httpContext.Request.Url);
+                    var fileStore = OpenWaves.ServiceLocator.Resolve<IFileStore>();
+                    Debug.WriteLine("Image transformed and cached to {0}, check file exists is {1}", transformedImagePath, fileStore.FileExists(transformedImagePath));
+                    */
 
-        private void InitializeResizer()
-        {
-            if (!_resizerInitialized)
-            {
-                lock (_lock)
-                {
-                    if (!_resizerInitialized)
-                    {
-                        new Initializer().InitializeResizer();
-                        _resizerInitialized = true;
-                    }
+                    var newUrl = resizedImageUri.ToString();
+                    httpContext.RewritePath(newUrl);
+                    UpdateRequestRawUrl(httpContext.Request, newUrl);
                 }
             }
         }
