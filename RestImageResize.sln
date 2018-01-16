@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize", "RestImag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebTest", "RestImageResize.WebTest\RestImageResize.WebTest.csproj", "{4C1F4E31-4158-484E-B104-A4D9F6E3B231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.WebEPiPackageTest", "RestImageResize.WebEPiPackageTest\RestImageResize.WebEPiPackageTest.csproj", "{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.EPiServer", "RestImageResize.EPiServer\RestImageResize.EPiServer.csproj", "{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}"
@@ -24,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.EPiServer.Test", "RestImageResize.EPiServer.Test\RestImageResize.EPiServer.Test.csproj", "{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestImageResize.EPiServer.PackageTest", "RestImageResize.EPiServer.PackageTest\RestImageResize.EPiServer.PackageTest.csproj", "{6D1ADB6C-F505-42A2-9AFC-012DA7716D43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +43,6 @@ Global
 		{4C1F4E31-4158-484E-B104-A4D9F6E3B231}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C1F4E31-4158-484E-B104-A4D9F6E3B231}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C1F4E31-4158-484E-B104-A4D9F6E3B231}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611}.Release|Any CPU.Build.0 = Release|Any CPU
 		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12A5B65E-ACED-4F3F-8BF9-A8AD51934E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,6 +51,10 @@ Global
 		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D1ADB6C-F505-42A2-9AFC-012DA7716D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D1ADB6C-F505-42A2-9AFC-012DA7716D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D1ADB6C-F505-42A2-9AFC-012DA7716D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D1ADB6C-F505-42A2-9AFC-012DA7716D43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,8 +62,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F345787E-4760-4B88-83DF-369137C3F07E} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
 		{4C1F4E31-4158-484E-B104-A4D9F6E3B231} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
-		{2BA04A35-3B76-4E33-8258-2FBDD5F5C611} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
 		{47EE7A8C-7807-4B8C-84EB-883BF04EBD41} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
+		{6D1ADB6C-F505-42A2-9AFC-012DA7716D43} = {F5C4FBB2-D9E8-4281-9CEE-E68B93B2A7F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EE02DE9-5622-4E0A-A554-66A26262C05D}

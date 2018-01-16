@@ -13,7 +13,7 @@ namespace RestImageResize.EPiServer
             var webImageTransformService = new WebImageTransformationService(
                 imageDataFileProvider,
                 new ConcurrentFileStore(fileStore),
-                new MagickNetImageTransforationService());
+                new MagickNetImageTransformationService());
 
             resolver
                 .Register<IFileStore>(fileStore)

@@ -1,12 +1,24 @@
 ﻿RestImageResize for EPiServer
 =============================
 
-To enable RestImageResize add next code to your initialization module.
+To enable RestImageResize add following initialization module.
 
-For EPiServer 7.5/8/9+:
+	[InitializableModule]
+    [ModuleDependency(typeof(ServiceContainerInitialization))]
+    public class OpenWavesImageTransformationsInitModule : IInitializableModule
+    {
+        public void Initialize(InitializationEngine context)
+        {
+            ServiceLocator.SetResolver(new BasicResolver().RegisterRestImageResize());
+        }
 
-    OpenWaves.ServiceLocator.SetResolver(new OpenWaves.BasicResolver().RegisterRestImageResize());
+        public void Uninitialize(InitializationEngine context)
+        {
 
-For older versions:
+        }
 
-    OpenWaves.ServiceLocator.SetResolver(new OpenWaves.BasicResolver().RegisterWebImageTransformationModule());
+        public void Preload(string[] parameters)
+        {
+
+        }
+    }
