@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>$id$</id>
-    <version>$version$-beta8</version>
+    <version>$version$-alpha1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -12,6 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
+      - v2.0.0 -  Updated major version together with RestImageResize.EPiServer package
       - v1.1.9 -  Fixed issues
       - v1.1.8 -  added IRestImageResizeService
       - v1.1.7 -  added log service configuration,

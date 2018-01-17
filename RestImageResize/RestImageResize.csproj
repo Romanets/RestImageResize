@@ -72,7 +72,7 @@
     <Compile Include="CropArea.cs" />
     <Compile Include="FocusPoint.cs" />
     <Compile Include="Initializer.cs" />
-    <Compile Include="MagickNetImageTransforationService.cs" />
+    <Compile Include="MagickNetImageTransformationService.cs" />
     <Compile Include="Transformations\DownResizeCropTransformation.cs" />
     <Compile Include="Transformations\IImageTransformationPropertiesSerializer.cs" />
     <Compile Include="IRestImageResizeService.cs" />

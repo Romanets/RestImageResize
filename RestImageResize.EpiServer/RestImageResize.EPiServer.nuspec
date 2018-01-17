@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>$id$</id>
-    <version>$version$-beta8</version>
+    <version>$version$-alpha1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <projectUrl>https://github.com/Romanets/RestImageResize</projectUrl>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      - v1.1.9 -  Fixed issues
+      - v2.0.0 - Switched to EPiServer 11
     </releaseNotes>
     <copyright>Copyright © Creuna 2015</copyright>
     <tags>Creuna Image Resize Transform OpenWaves ASP.NET EPiServer</tags>

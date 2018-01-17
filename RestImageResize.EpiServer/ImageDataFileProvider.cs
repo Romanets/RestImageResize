@@ -1,4 +1,5 @@
 ﻿using EPiServer.Core;
+using EPiServer.Core.Routing.Pipeline.Internal;
 using EPiServer.Web.Routing;
 using OpenWaves;
 using OpenWaves.ImageTransformations.Web;
@@ -7,18 +8,13 @@ namespace RestImageResize.EPiServer
 {
     public class ImageDataFileProvider : IVirtualFileProvider
     {
-        public ImageDataFileProvider(UrlResolver urlResolver)
-        {
-            UrlResolver = urlResolver;
-        }
-
-        protected virtual UrlResolver UrlResolver { get; private set; }
+        protected virtual IUrlResolver UrlResolver => global::EPiServer.Web.Routing.UrlResolver.Current;
 
         public IVirtualFile GetFile(Url fileUrl)
         {
-            var contentRef = UrlResolver.Route(new global::EPiServer.UrlBuilder(fileUrl));
-
-            var image = contentRef as ImageData;
+            var content = UrlResolver.Route(new global::EPiServer.UrlBuilder(fileUrl));
+            
+            var image = content as ImageData;
 
             if (image != null)
             {

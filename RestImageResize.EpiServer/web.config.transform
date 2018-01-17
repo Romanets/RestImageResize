@@ -2,7 +2,7 @@
 <configuration>
   <episerver.framework>
     <virtualPathProviders>
-      <add name="ImagesTransformVPP" virtualPath="~/TransformedImages/" physicalPath="[appDataPath]\TransformedImages" bypassAccessCheck="true" useRouting="true" type="EPiServer.Web.Hosting.VirtualPathNonUnifiedProvider, EPiServer.Framework" />
+      <add name="ImagesTransformVPP" virtualPath="~/TransformedImages/" physicalPath="[appDataPath]\TransformedImages" bypassAccessCheck="true" useRouting="true" type="EPiServer.Web.Hosting.VirtualPathNonUnifiedProvider, EPiServer.Framework.AspNet" />
     </virtualPathProviders>
   </episerver.framework>
 </configuration>
