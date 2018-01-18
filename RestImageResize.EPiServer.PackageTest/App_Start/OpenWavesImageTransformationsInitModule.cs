@@ -12,7 +12,8 @@ namespace RestImageResize.EPiServer.PackageTest
     {
         public void Initialize(InitializationEngine context)
         {
-            ServiceLocator.SetResolver(new BasicResolver().RegisterRestImageResize());
+            //ServiceLocator.SetResolver(new BasicResolver().RegisterRestImageResize()); // With cache in ImagesTransformVPP
+            ServiceLocator.SetResolver(new BasicResolver().RegisterRestImageResizeWithCacheInBlobs()); // With cache in blobs
         }
 
         public void Uninitialize(InitializationEngine context)
