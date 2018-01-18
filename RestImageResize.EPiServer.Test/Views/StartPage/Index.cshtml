@@ -1,22 +1,28 @@
-﻿@using EPiServer.Core
+﻿@using EPiServer
+@using EPiServer.Core
 @using EPiServer.Editor
+@using EPiServer.Web
 @using EPiServer.Web.Mvc.Html
+@using EPiServer.Web.Routing
 
 @model RestImageResize.EPiServer.Test.Models.Pages.StartPage
-
+@{
+    var imageUrl = UrlResolver.Current.GetUrl(@Model.Image, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
+}
 <h2>@Model.Name</h2>
 <div>
     @if (PageEditing.PageIsInEditMode)
-    { 
+    {
         @Html.PropertyFor(m => m.Image)
+        @Html.FullRefreshPropertiesMetaData(new[] { "Image" })
     }
     else
     {
         <img src="@Url.ContentUrl(@Model.Image)" />
-        <img src="@Url.ContentUrl(@Model.Image)?width=300" />
-        <img src="@Url.ContentUrl(@Model.Image)?width=300&transform=fit" />
-        <img src="@Url.ContentUrl(@Model.Image)?width=300&transform=fill" />
-        <img src="@Url.ContentUrl(@Model.Image)?width=300&transform=crop" />
-        <img src="@Url.ContentUrl(@Model.Image)?width=300&transform=stretch" />
     }
+    <img src="@imageUrl?width=300" />
+    <img src="@imageUrl?width=300&transform=fit" />
+    <img src="@imageUrl?width=300&transform=fill" />
+    <img src="@imageUrl?width=300&transform=crop" />
+    <img src="@imageUrl?width=300&transform=stretch" />
 </div>

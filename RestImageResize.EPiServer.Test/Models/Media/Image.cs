@@ -4,6 +4,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
+using EPiServer.Web.Routing;
 
 namespace RestImageResize.EPiServer.Test.Models.Media
 {
