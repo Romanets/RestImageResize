@@ -1,28 +1,41 @@
-﻿using OpenWaves;
+﻿using System.Web.Routing;
+using EPiServer.Web.Routing;
+using OpenWaves;
 using OpenWaves.ImageTransformations.Web;
 
 namespace RestImageResize.EPiServer
 {
     public static class InstallationExtensions
     {
-        public static BasicResolver RegisterRestImageResize(this BasicResolver resolver)
+        public static BasicResolver RegisterRestImageResize(this BasicResolver resolver, IFileStore imagesCacheStore = null)
         {
+           // RouteTable.Routes.Add(new Route("*.resizedimageblob", new CustomHandler()));
+
             var imageDataFileProvider = new ImageDataFileProvider();
-            
-            var fileStore = new VirtualFileStore("ImagesTransformVPP");
+
+            if (imagesCacheStore == null)
+            {
+                imagesCacheStore = new VirtualFileStore("ImagesTransformVPP");
+            }
+
             var webImageTransformService = new WebImageTransformationService(
                 imageDataFileProvider,
-                new ConcurrentFileStore(fileStore),
+                new ConcurrentFileStore(imagesCacheStore),
                 new MagickNetImageTransformationService());
 
             resolver
-                .Register<IFileStore>(fileStore)
+                .Register<IFileStore>(imagesCacheStore)
                 .Register<IVirtualFileProvider>(imageDataFileProvider)
                 .Register<IWebImageTransformationService>(webImageTransformService)
                 .Register<IWebImageTransformationModuleImplementation>(
                     new WebImageTransformationModuleImplementation(webImageTransformService));
 
             return resolver;
+        }
+
+        public static BasicResolver RegisterRestImageResizeWithCacheInBlobs(this BasicResolver resolver, string cacheContainerName = "_RestImageResizeCache")
+        {
+            return resolver.RegisterRestImageResize(new BlobFileStore(cacheContainerName));
         }
     }
 }

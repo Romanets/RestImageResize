@@ -75,3 +75,5 @@ RestImageResize.WebEPiPackageTest/Content/Images/Transformed/
 .vs/
 RestImageResize.EPiServer.Test/App_Data/TransformedImages/
 RestImageResize.EPiServer.PackageTest/App_Data/TransformedImages/
+RestImageResize.EPiServer.Test/App_Data/blobs/_RestImageResizeCache/
+RestImageResize.EPiServer.PackageTest/App_Data/blobs/_RestImageResizeCache/

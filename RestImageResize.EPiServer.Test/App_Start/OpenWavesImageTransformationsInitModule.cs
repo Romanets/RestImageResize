@@ -2,10 +2,9 @@
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using OpenWaves;
-using RestImageResize.EPiServer;
 using ServiceLocator = OpenWaves.ServiceLocator;
 
-namespace RestImageResize.WebEPiTest.App_Start
+namespace RestImageResize.EPiServer.Test
 {
     [InitializableModule]
     [ModuleDependency(typeof(ServiceContainerInitialization))]
@@ -13,7 +12,7 @@ namespace RestImageResize.WebEPiTest.App_Start
     {
         public void Initialize(InitializationEngine context)
         {
-            ServiceLocator.SetResolver(new BasicResolver().RegisterRestImageResize());
+            ServiceLocator.SetResolver(new BasicResolver().RegisterRestImageResizeWithCacheInBlobs());
         }
 
         public void Uninitialize(InitializationEngine context)
