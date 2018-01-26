@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>$id$</id>
-    <version>$version$-alpha3</version>
+    <version>$version$</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <projectUrl>https://github.com/Romanets/RestImageResize</projectUrl>
